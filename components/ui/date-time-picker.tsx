@@ -1,9 +1,11 @@
 "use client";
 
-import DatePicker from "react-datepicker";
+import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { id } from "date-fns/locale";
 import { CalendarDays } from "lucide-react";
+
+registerLocale("id", id);
 import { cn } from "@/lib/utils/cn";
 
 interface DateTimePickerProps {
@@ -56,7 +58,7 @@ export function DateTimePicker({
           timeIntervals={15}
           dateFormat="dd/MM/yyyy, HH:mm"
           placeholderText={placeholder}
-          locale={id}
+          locale="id"
           minDate={minDate}
           autoComplete="off"
           className={cn(

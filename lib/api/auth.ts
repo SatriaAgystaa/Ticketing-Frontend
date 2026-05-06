@@ -1,4 +1,4 @@
-import type { LoginResponse, User } from "@/lib/types/user";
+import type { LoginResponse, StaffEvent, User } from "@/lib/types/user";
 import { api } from "./client";
 
 export const authApi = {
@@ -49,5 +49,9 @@ export const authApi = {
 
   getMe() {
     return api.get<User>("/auth/me");
+  },
+
+  getStaffEvents() {
+    return api.get<StaffEvent[]>("/auth/me/staff-events");
   },
 };

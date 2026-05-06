@@ -49,8 +49,10 @@ export default function CheckoutPage() {
       : promo.discount_value
     : 0;
 
-  const platformFee = Math.round(subtotal * 0.04);
-  const total = subtotal + platformFee - discount;
+  const isFreeEvent = subtotal === 0;
+  const platformFee = 0; // dikonfig dari admin, diambil dari response order
+  const paymentFee = isFreeEvent ? 0 : 4500; // flat Midtrans fee, hanya untuk event berbayar
+  const total = subtotal + platformFee + paymentFee - discount;
 
   const handleValidatePromo = async () => {
     if (!promoCode.trim() || selectedItems.length === 0) return;
@@ -194,7 +196,7 @@ export default function CheckoutPage() {
         <PriceBreakdown
           subtotal={subtotal}
           platformFee={platformFee}
-          paymentFee={0}
+          paymentFee={paymentFee}
           discount={discount}
           total={total}
         />

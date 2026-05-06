@@ -13,6 +13,21 @@ export interface User {
   updated_at: string;
 }
 
+export interface StaffEvent {
+  event_id: string;
+  role: string;
+  permissions: string[];
+  accepted_at: string | null;
+  invitation_token: string | null;
+  event: {
+    id: string;
+    title: string;
+    starts_at: string;
+    ends_at: string;
+    banner_url: string | null;
+  };
+}
+
 export interface OrganizerProfile {
   id: string;
   user_id: string;

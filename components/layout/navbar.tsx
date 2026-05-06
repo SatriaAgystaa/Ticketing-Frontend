@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Menu, Search, Ticket, User, LogOut, LayoutDashboard } from "lucide-react";
+import { Menu, Search, Ticket, User, LogOut, LayoutDashboard, ScanLine } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "@/lib/auth/context";
 import { Button } from "@/components/ui/button";
@@ -10,7 +10,7 @@ import { Dropdown } from "@/components/ui/dropdown";
 import { USER_ROLES } from "@/lib/utils/constants";
 
 export function Navbar() {
-  const { user, isLoggedIn, logout } = useAuth();
+  const { user, isLoggedIn, isStaff, isGateScanner, logout } = useAuth();
   const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -67,6 +67,11 @@ export function Navbar() {
                   : []),
                 ...(user?.role === USER_ROLES.SUPER_ADMIN
                   ? [{ label: "Admin Panel", onClick: () => router.push("/admin"), icon: <LayoutDashboard className="h-4 w-4" /> }]
+                  : []),
+                ...(isGateScanner
+                  ? [{ label: "Scan Tiket", onClick: () => router.push("/scan"), icon: <ScanLine className="h-4 w-4" /> }]
+                  : isStaff
+                  ? [{ label: "Staff Dashboard", onClick: () => router.push("/staff"), icon: <LayoutDashboard className="h-4 w-4" /> }]
                   : []),
                 { label: "Tiket Saya", onClick: () => router.push("/tickets"), icon: <Ticket className="h-4 w-4" /> },
                 { label: "Profil", onClick: () => router.push("/profile"), icon: <User className="h-4 w-4" /> },

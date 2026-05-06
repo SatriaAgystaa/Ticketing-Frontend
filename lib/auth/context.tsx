@@ -10,13 +10,16 @@ import {
 } from "react";
 import { authApi } from "@/lib/api/auth";
 import { clearTokens, isAuthenticated, setTokens } from "@/lib/auth/tokens";
-import type { User } from "@/lib/types/user";
+import type { StaffEvent, User } from "@/lib/types/user";
 
 interface AuthContextValue {
   user: User | null;
+  staffEvents: StaffEvent[];
   isLoading: boolean;
   isLoggedIn: boolean;
-  login: (email: string, password: string) => Promise<void>;
+  isStaff: boolean;
+  isGateScanner: boolean;
+  login: (email: string, password: string) => Promise<{ role: string; isGateScanner: boolean; isStaff: boolean }>;
   register: (data: { email: string; password: string; full_name: string; phone?: string }) => Promise<void>;
   logout: () => Promise<void>;
   refreshUser: () => Promise<void>;
@@ -26,18 +29,25 @@ const AuthContext = createContext<AuthContextValue | null>(null);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
+  const [staffEvents, setStaffEvents] = useState<StaffEvent[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const refreshUser = useCallback(async () => {
     try {
       if (!isAuthenticated()) {
         setUser(null);
+        setStaffEvents([]);
         return;
       }
       const { data } = await authApi.getMe();
       setUser(data);
+
+      // Load staff events untuk semua user (gate scanner / co-organizer)
+      const staffRes = await authApi.getStaffEvents().catch(() => null);
+      setStaffEvents(staffRes?.data ?? []);
     } catch {
       setUser(null);
+      setStaffEvents([]);
       clearTokens();
     }
   }, []);
@@ -54,6 +64,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       expires_in: data.expires_in,
     });
     setUser(data.user);
+    const staffRes = await authApi.getStaffEvents().catch(() => null);
+    const events = staffRes?.data ?? [];
+    setStaffEvents(events);
+    const isGateScanner = events.some((e) => e.role === 'gate_scanner');
+    return { role: data.user.role, isStaff: events.length > 0, isGateScanner };
   };
 
   const register = async (data: { email: string; password: string; full_name: string; phone?: string }) => {
@@ -72,8 +87,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   return (
     <AuthContext value={{
       user,
+      staffEvents,
       isLoading,
       isLoggedIn: !!user,
+      isStaff: staffEvents.length > 0,
+      isGateScanner: staffEvents.some((e) => e.role === 'gate_scanner'),
       login,
       register,
       logout,

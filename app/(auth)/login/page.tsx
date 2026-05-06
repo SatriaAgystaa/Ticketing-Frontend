@@ -36,9 +36,13 @@ export default function LoginPage() {
   const onSubmit = async (data: LoginFormData) => {
     setIsSubmitting(true);
     try {
-      await login(data.email, data.password);
+      const { role, isGateScanner, isStaff } = await login(data.email, data.password);
       toast.success("Login berhasil");
-      router.push("/");
+      if (role === "super_admin") router.push("/admin");
+      else if (role === "organizer") router.push("/dashboard");
+      else if (isGateScanner) router.push("/scan");
+      else if (isStaff) router.push("/staff");
+      else router.push("/");
     } catch (error: unknown) {
       const message =
         error instanceof Error ? error.message : "Login gagal, silakan coba lagi";

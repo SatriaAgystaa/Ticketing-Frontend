@@ -3,12 +3,14 @@
 import { use, useCallback, useState } from "react";
 import Link from "next/link";
 import { toast } from "sonner";
-import { Keyboard, RotateCcw } from "lucide-react";
+import { Keyboard, RotateCcw, ScanLine, CalendarDays } from "lucide-react";
 import { ticketsApi } from "@/lib/api/tickets";
 import type { TicketValidationResult } from "@/lib/types/ticket";
 import { QrScanner } from "@/components/shared/qr-scanner";
 import { ScanResult } from "@/components/shared/scan-result";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/lib/auth/context";
+import { formatDate } from "@/lib/utils/format-date";
 
 export default function ScannerPage({
   params,
@@ -16,6 +18,9 @@ export default function ScannerPage({
   params: Promise<{ eventId: string }>;
 }) {
   const { eventId } = use(params);
+  const { staffEvents } = useAuth();
+  const staffEvent = staffEvents.find((s) => s.event_id === eventId);
+
   const [result, setResult] = useState<TicketValidationResult | null>(null);
   const [isValidating, setIsValidating] = useState(false);
   const [scannerEnabled, setScannerEnabled] = useState(true);
@@ -46,7 +51,7 @@ export default function ScannerPage({
         setIsValidating(false);
       }
     },
-    [isValidating],
+    [isValidating, eventId],
   );
 
   const resetScanner = () => {
@@ -57,6 +62,18 @@ export default function ScannerPage({
 
   return (
     <div className="mx-auto flex w-full max-w-md flex-col gap-4">
+      {/* Info Event */}
+      {staffEvent && (
+        <div className="rounded-xl bg-zinc-900 px-4 py-3 dark:bg-zinc-800">
+          <p className="font-semibold text-white">{staffEvent.event.title}</p>
+          <div className="mt-1 flex items-center gap-1 text-xs text-zinc-400">
+            <CalendarDays className="h-3 w-3" />
+            {formatDate(staffEvent.event.starts_at)}
+          </div>
+        </div>
+      )}
+
+      {/* Header */}
       <div className="flex items-center justify-between">
         <h1 className="text-lg font-bold text-zinc-900 dark:text-white">
           Scan Tiket
@@ -76,10 +93,20 @@ export default function ScannerPage({
         onError={(err) => toast.error(err)}
       />
 
+      {/* Idle hint — tampil kalau belum ada result */}
+      {!result && !isError && !isValidating && (
+        <div className="flex flex-col items-center gap-2 rounded-xl border border-dashed border-zinc-300 py-8 text-center dark:border-zinc-700">
+          <ScanLine className="h-8 w-8 text-zinc-400" />
+          <p className="text-sm font-medium text-zinc-500">Arahkan kamera ke QR Code tiket</p>
+          <p className="text-xs text-zinc-400">atau gunakan input Manual di atas</p>
+        </div>
+      )}
+
       {/* Validation Loading */}
       {isValidating && (
-        <div className="flex items-center justify-center rounded-xl bg-zinc-100 p-8 dark:bg-zinc-800">
+        <div className="flex flex-col items-center justify-center gap-3 rounded-xl bg-zinc-100 p-8 dark:bg-zinc-800">
           <div className="h-8 w-8 animate-spin rounded-full border-4 border-zinc-300 border-t-zinc-900" />
+          <p className="text-sm text-zinc-500">Memvalidasi tiket...</p>
         </div>
       )}
 

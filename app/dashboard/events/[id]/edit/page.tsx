@@ -1,7 +1,7 @@
 "use client";
 
 import { use, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
@@ -12,7 +12,7 @@ import {
   type UpdateEventFormData,
 } from "@/lib/schemas/event.schema";
 import { eventsApi } from "@/lib/api/events";
-import type { Event } from "@/lib/types/event";
+import type { Event, EventCategory } from "@/lib/types/event";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -20,6 +20,7 @@ import { Select } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { FileUpload } from "@/components/shared/file-upload";
 import { WilayahSelect } from "@/components/shared/wilayah-select";
+import { DateTimePicker } from "@/components/ui/date-time-picker";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default function EditEventPage({
@@ -29,8 +30,12 @@ export default function EditEventPage({
 }) {
   const { id } = use(params);
   const router = useRouter();
+  const pathname = usePathname();
+  const isStaffRoute = pathname.startsWith("/staff");
+  const backHref = isStaffRoute ? `/staff/events/${id}` : `/dashboard/events/${id}`;
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [categories, setCategories] = useState<EventCategory[]>([]);
 
   const {
     register,
@@ -46,9 +51,13 @@ export default function EditEventPage({
   const bannerUrl = watch("banner_url");
 
   useEffect(() => {
+    eventsApi.getCategories().then((res) => setCategories(res.data)).catch(() => {});
+  }, []);
+
+  useEffect(() => {
     async function load() {
       try {
-        const res = await eventsApi.getBySlug(id);
+        const res = await eventsApi.getById(id);
         const e = res.data as Event;
         reset({
           title: e.title,
@@ -75,7 +84,7 @@ export default function EditEventPage({
         });
       } catch {
         toast.error("Gagal memuat data event");
-        router.push("/dashboard/events");
+        router.push(backHref);
       } finally {
         setIsLoading(false);
       }
@@ -88,7 +97,7 @@ export default function EditEventPage({
     try {
       await eventsApi.update(id, data);
       toast.success("Event berhasil diperbarui!");
-      router.push(`/dashboard/events/${id}`);
+      router.push(backHref);
     } catch {
       toast.error("Gagal memperbarui event");
     } finally {
@@ -108,7 +117,7 @@ export default function EditEventPage({
   return (
     <div className="mx-auto max-w-3xl space-y-6">
       <div className="flex items-center gap-3">
-        <Link href={`/dashboard/events/${id}`}>
+        <Link href={backHref}>
           <Button variant="secondary" size="sm">
             <ArrowLeft className="mr-1.5 h-4 w-4" />
             Kembali
@@ -156,6 +165,14 @@ export default function EditEventPage({
               error={errors.description?.message}
               {...register("description")}
             />
+            <Select
+              id="category_id"
+              label="Kategori"
+              options={categories.map((c) => ({ value: c.id, label: c.name }))}
+              error={errors.category_id?.message}
+              {...register("category_id")}
+            />
+
             <div className="grid gap-4 sm:grid-cols-2">
               <Select
                 id="event_type"
@@ -241,35 +258,36 @@ export default function EditEventPage({
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid gap-4 sm:grid-cols-2">
-              <Input
+              <DateTimePicker
                 id="starts_at"
                 label="Mulai"
-                type="datetime-local"
+                value={watch("starts_at")}
+                onChange={(v) => setValue("starts_at", v, { shouldValidate: true })}
                 error={errors.starts_at?.message}
-                {...register("starts_at")}
               />
-              <Input
+              <DateTimePicker
                 id="ends_at"
                 label="Selesai"
-                type="datetime-local"
+                value={watch("ends_at")}
+                onChange={(v) => setValue("ends_at", v, { shouldValidate: true })}
                 error={errors.ends_at?.message}
-                {...register("ends_at")}
+                minDate={watch("starts_at") ? new Date(watch("starts_at")!) : undefined}
               />
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
-              <Input
+              <DateTimePicker
                 id="sale_starts_at"
                 label="Penjualan Dimulai (opsional)"
-                type="datetime-local"
+                value={watch("sale_starts_at")}
+                onChange={(v) => setValue("sale_starts_at", v, { shouldValidate: true })}
                 error={errors.sale_starts_at?.message}
-                {...register("sale_starts_at")}
               />
-              <Input
+              <DateTimePicker
                 id="sale_ends_at"
                 label="Penjualan Berakhir (opsional)"
-                type="datetime-local"
+                value={watch("sale_ends_at")}
+                onChange={(v) => setValue("sale_ends_at", v, { shouldValidate: true })}
                 error={errors.sale_ends_at?.message}
-                {...register("sale_ends_at")}
               />
             </div>
           </CardContent>
@@ -324,7 +342,7 @@ export default function EditEventPage({
           <Button
             type="button"
             variant="secondary"
-            onClick={() => router.push(`/dashboard/events/${id}`)}
+            onClick={() => router.push(backHref)}
           >
             Batal
           </Button>

@@ -41,23 +41,26 @@ export function WilayahSelect({ value, onChange, errors }: WilayahSelectProps) {
   const { data: kecamatanList, isLoading: loadingKec } = useKecamatan(kabkotaId);
   const { data: kelurahanList, isLoading: loadingKel } = useKelurahan(kecamatanId);
 
-  // Sync initial IDs when provinsiList loads (for edit form)
+  // Sync IDs when lists load (for edit form pre-fill)
   useEffect(() => {
-    if (!value?.province || !provinsiList.length) return;
+    if (!value?.province || !provinsiList.length || provinsiId) return;
     const match = provinsiList.find((p) => p.text === value.province);
-    if (match && match.id !== provinsiId) setProvinsiId(match.id);
+    if (match) setProvinsiId(match.id);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [provinsiList, value?.province]);
 
   useEffect(() => {
-    if (!value?.city || !kabkotaList.length) return;
+    if (!value?.city || !kabkotaList.length || kabkotaId) return;
     const match = kabkotaList.find((k) => k.text === value.city);
-    if (match && match.id !== kabkotaId) setKabkotaId(match.id);
+    if (match) setKabkotaId(match.id);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [kabkotaList, value?.city]);
 
   useEffect(() => {
-    if (!value?.district || !kecamatanList.length) return;
+    if (!value?.district || !kecamatanList.length || kecamatanId) return;
     const match = kecamatanList.find((k) => k.text === value.district);
-    if (match && match.id !== kecamatanId) setKecamatanId(match.id);
+    if (match) setKecamatanId(match.id);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [kecamatanList, value?.district]);
 
   const current: WilayahValue = {
@@ -128,16 +131,21 @@ export function WilayahSelect({ value, onChange, errors }: WilayahSelectProps) {
   return (
     <div className="space-y-4">
       <div className="grid gap-4 sm:grid-cols-2">
-        <Select
-          id="venue_province"
-          label="Provinsi *"
-          placeholder={loadingProv ? "Memuat..." : "Pilih provinsi"}
-          options={provinsiList.map((p) => ({ value: p.id, label: p.text }))}
-          value={provinsiId ?? ""}
-          onChange={(e) => handleProvinsi(e.target.value)}
-          disabled={loadingProv}
-          error={errors?.province}
-        />
+        <div className="space-y-1">
+          <Select
+            id="venue_province"
+            label="Provinsi *"
+            placeholder={loadingProv ? "Memuat data wilayah..." : provinsiList.length === 0 ? "Gagal memuat — coba refresh" : "Pilih provinsi"}
+            options={provinsiList.map((p) => ({ value: p.id, label: p.text }))}
+            value={provinsiId ?? ""}
+            onChange={(e) => handleProvinsi(e.target.value)}
+            disabled={loadingProv}
+            error={errors?.province}
+          />
+          {!loadingProv && value?.province && !provinsiId && (
+            <p className="text-xs text-zinc-500">Nilai saat ini: <span className="font-medium">{value.province}</span></p>
+          )}
+        </div>
         <Select
           id="venue_city"
           label="Kabupaten / Kota *"

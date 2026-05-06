@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Html5Qrcode } from "html5-qrcode";
+import jsQR from "jsqr";
 
 interface QrScannerProps {
   onScan: (code: string) => void;
@@ -10,42 +10,105 @@ interface QrScannerProps {
 }
 
 export function QrScanner({ onScan, onError, enabled = true }: QrScannerProps) {
-  const scannerRef = useRef<Html5Qrcode | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [isStarted, setIsStarted] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const streamRef = useRef<MediaStream | null>(null);
+  const rafRef = useRef<number | null>(null);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    if (!enabled || !containerRef.current) return;
+    if (!enabled) return;
 
-    const scanner = new Html5Qrcode("qr-reader");
-    scannerRef.current = scanner;
+    let stopped = false;
 
-    scanner
-      .start(
-        { facingMode: "environment" },
-        { fps: 10, qrbox: { width: 250, height: 250 } },
-        (decodedText) => {
-          onScan(decodedText);
-        },
-        () => {},
-      )
-      .then(() => setIsStarted(true))
-      .catch((err) => {
+    const startCamera = async () => {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: { ideal: "environment" } },
+        });
+        if (stopped) { stream.getTracks().forEach((t) => t.stop()); return; }
+
+        streamRef.current = stream;
+        if (videoRef.current) {
+          videoRef.current.srcObject = stream;
+          videoRef.current.play();
+          setIsReady(true);
+        }
+      } catch (err) {
         onError?.(String(err));
-      });
-
-    return () => {
-      if (scannerRef.current?.isScanning) {
-        scannerRef.current.stop().catch(() => {});
       }
     };
-  }, [enabled, onScan, onError]);
+
+    startCamera();
+
+    return () => {
+      stopped = true;
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      streamRef.current?.getTracks().forEach((t) => t.stop());
+      setIsReady(false);
+    };
+  }, [enabled, onError]);
+
+  // Scan loop — read frames via canvas + jsQR
+  useEffect(() => {
+    if (!isReady) return;
+
+    const scan = () => {
+      const video = videoRef.current;
+      const canvas = canvasRef.current;
+      if (!video || !canvas || video.readyState < video.HAVE_ENOUGH_DATA) {
+        rafRef.current = requestAnimationFrame(scan);
+        return;
+      }
+
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
+
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const code = jsQR(imageData.data, imageData.width, imageData.height, {
+        inversionAttempts: "dontInvert",
+      });
+
+      if (code?.data) {
+        onScan(code.data);
+        return; // stop scanning after first hit — parent decides when to re-enable
+      }
+
+      rafRef.current = requestAnimationFrame(scan);
+    };
+
+    rafRef.current = requestAnimationFrame(scan);
+    return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
+  }, [isReady, onScan]);
 
   return (
     <div className="relative overflow-hidden rounded-xl bg-black">
-      <div id="qr-reader" ref={containerRef} className="w-full" />
-      {!isStarted && enabled && (
-        <div className="flex aspect-square items-center justify-center">
+      <video
+        ref={videoRef}
+        className="w-full"
+        autoPlay
+        muted
+        playsInline
+      />
+      <canvas ref={canvasRef} className="hidden" />
+
+      {/* scan frame overlay */}
+      {isReady && (
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+          <div className="relative h-56 w-56">
+            <span className="absolute left-0 top-0 h-8 w-8 rounded-tl-md border-l-4 border-t-4 border-white" />
+            <span className="absolute right-0 top-0 h-8 w-8 rounded-tr-md border-r-4 border-t-4 border-white" />
+            <span className="absolute bottom-0 left-0 h-8 w-8 rounded-bl-md border-b-4 border-l-4 border-white" />
+            <span className="absolute bottom-0 right-0 h-8 w-8 rounded-br-md border-b-4 border-r-4 border-white" />
+          </div>
+        </div>
+      )}
+
+      {!isReady && enabled && (
+        <div className="absolute inset-0 flex aspect-square items-center justify-center">
           <p className="text-sm text-zinc-400">Mengaktifkan kamera...</p>
         </div>
       )}

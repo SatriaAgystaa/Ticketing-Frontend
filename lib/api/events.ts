@@ -34,6 +34,10 @@ export const eventsApi = {
     return api.get<EventDetail>(`/events/${slug}`, undefined, false);
   },
 
+  getById(id: string) {
+    return api.get<Event>(`/events/${id}`);
+  },
+
   getCategories() {
     return api.get<EventCategory[]>("/events/categories", undefined, false);
   },
@@ -90,8 +94,12 @@ export const eventsApi = {
   },
 
   // Staff
+  getStaff(eventId: string) {
+    return api.get<EventStaff[]>(`/events/${eventId}/staff`);
+  },
+
   inviteStaff(eventId: string, data: { email: string; role: string; permissions: string[] }) {
-    return api.post<EventStaff>(`/events/${eventId}/staff`, data);
+    return api.post<{ message: string; email: string }>(`/events/${eventId}/staff`, data);
   },
 
   removeStaff(eventId: string, userId: string) {

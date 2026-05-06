@@ -51,17 +51,17 @@ export default function EventDetailPage({
   useEffect(() => {
     async function load() {
       try {
-        const [eventRes, statsRes, ticketRes] = await Promise.all([
+        const [eventRes, ticketRes] = await Promise.all([
           eventsApi.getBySlug(id),
-          eventsApi.getStats(id),
           eventsApi.getTicketTypes(id),
         ]);
         setEvent(eventRes.data as Event);
-        setStats(statsRes.data);
         setHasTickets(ticketRes.data.length > 0);
+        // Stats may be forbidden for co_organizer without VIEW_REVENUE
+        const statsRes = await eventsApi.getStats(id).catch(() => null);
+        if (statsRes) setStats(statsRes.data);
       } catch {
         toast.error("Gagal memuat data event");
-        router.push("/dashboard/events");
       } finally {
         setIsLoading(false);
       }

@@ -9,11 +9,19 @@ export interface WilayahOption {
   text: string;
 }
 
-async function fetchWilayah(endpoint: string): Promise<WilayahOption[]> {
-  const res = await fetch(`${BASE_URL}${endpoint}`);
-  if (!res.ok) return [];
-  const json = await res.json();
-  return json.result ?? [];
+async function fetchWilayah(endpoint: string, retries = 2): Promise<WilayahOption[]> {
+  for (let i = 0; i <= retries; i++) {
+    try {
+      const res = await fetch(`${BASE_URL}${endpoint}`);
+      if (!res.ok) continue;
+      const json = await res.json();
+      const result = json.result ?? [];
+      if (result.length > 0) return result;
+    } catch {
+      // retry
+    }
+  }
+  return [];
 }
 
 export function useProvinsi() {

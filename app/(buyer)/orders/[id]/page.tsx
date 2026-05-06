@@ -124,6 +124,12 @@ export default function OrderDetailPage() {
             <span>Biaya layanan</span>
             <span>{formatCurrency(order.platform_fee)}</span>
           </div>
+          {order.payment_fee > 0 && (
+            <div className="mt-1 flex justify-between text-sm text-zinc-500 dark:text-zinc-400">
+              <span>Biaya pembayaran</span>
+              <span>{formatCurrency(order.payment_fee)}</span>
+            </div>
+          )}
           {order.discount_amount > 0 && (
             <div className="mt-1 flex justify-between text-sm text-green-600">
               <span>Diskon</span>

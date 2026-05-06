@@ -3,12 +3,14 @@
 import { use, useState } from "react";
 import Link from "next/link";
 import { toast } from "sonner";
-import { Camera, Search } from "lucide-react";
+import { Camera, Search, CalendarDays, TicketIcon } from "lucide-react";
 import { ticketsApi } from "@/lib/api/tickets";
 import type { TicketValidationResult } from "@/lib/types/ticket";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ScanResult } from "@/components/shared/scan-result";
+import { useAuth } from "@/lib/auth/context";
+import { formatDate } from "@/lib/utils/format-date";
 
 export default function ManualScanPage({
   params,
@@ -16,6 +18,9 @@ export default function ManualScanPage({
   params: Promise<{ eventId: string }>;
 }) {
   const { eventId } = use(params);
+  const { staffEvents } = useAuth();
+  const staffEvent = staffEvents.find((s) => s.event_id === eventId);
+
   const [code, setCode] = useState("");
   const [result, setResult] = useState<TicketValidationResult | null>(null);
   const [isValidating, setIsValidating] = useState(false);
@@ -48,8 +53,26 @@ export default function ManualScanPage({
     }
   };
 
+  const reset = () => {
+    setResult(null);
+    setCode("");
+    setIsError(false);
+  };
+
   return (
     <div className="mx-auto flex w-full max-w-md flex-col gap-4">
+      {/* Info Event */}
+      {staffEvent && (
+        <div className="rounded-xl bg-zinc-900 px-4 py-3 dark:bg-zinc-800">
+          <p className="font-semibold text-white">{staffEvent.event.title}</p>
+          <div className="mt-1 flex items-center gap-1 text-xs text-zinc-400">
+            <CalendarDays className="h-3 w-3" />
+            {formatDate(staffEvent.event.starts_at)}
+          </div>
+        </div>
+      )}
+
+      {/* Header */}
       <div className="flex items-center justify-between">
         <h1 className="text-lg font-bold text-zinc-900 dark:text-white">
           Input Manual
@@ -62,11 +85,12 @@ export default function ManualScanPage({
         </Link>
       </div>
 
+      {/* Form */}
       <div className="space-y-3">
         <Input
           id="ticket-code"
           label="Kode Tiket"
-          placeholder="Masukkan kode tiket..."
+          placeholder="Contoh: TKT-01KQXRTTKXE05X2NCFEJQN9SCC"
           value={code}
           onChange={(e) => setCode(e.target.value.toUpperCase())}
           onKeyDown={(e) => e.key === "Enter" && handleValidate()}
@@ -81,18 +105,20 @@ export default function ManualScanPage({
         </Button>
       </div>
 
+      {/* Idle hint */}
+      {!result && !isError && !isValidating && (
+        <div className="flex flex-col items-center gap-2 rounded-xl border border-dashed border-zinc-300 py-8 text-center dark:border-zinc-700">
+          <TicketIcon className="h-8 w-8 text-zinc-400" />
+          <p className="text-sm font-medium text-zinc-500">Masukkan kode tiket di atas</p>
+          <p className="text-xs text-zinc-400">Kode tiket dimulai dengan <span className="font-mono">TKT-</span></p>
+        </div>
+      )}
+
+      {/* Result */}
       <ScanResult result={result} isError={isError} />
 
-      {result && (
-        <Button
-          variant="secondary"
-          className="w-full"
-          onClick={() => {
-            setResult(null);
-            setCode("");
-            setIsError(false);
-          }}
-        >
+      {(result || isError) && (
+        <Button variant="secondary" className="w-full" onClick={reset}>
           Reset
         </Button>
       )}

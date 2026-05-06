@@ -2,7 +2,7 @@
 
 import { use, useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
-import { Plus, Trash2, UserPlus } from "lucide-react";
+import { Trash2, UserPlus } from "lucide-react";
 import { eventsApi } from "@/lib/api/events";
 import type { EventStaff } from "@/lib/types/event";
 import { STAFF_ROLES, STAFF_PERMISSIONS } from "@/lib/utils/constants";
@@ -30,9 +30,8 @@ export default function StaffPage({
 
   const loadStaff = useCallback(async () => {
     try {
-      const res = await eventsApi.getAttendees(eventId); // placeholder - use staff endpoint
-      // In real implementation, this would be a staff-specific API call
-      setStaff([]);
+      const res = await eventsApi.getStaff(eventId);
+      setStaff(res.data);
     } catch {
       // silent
     } finally {

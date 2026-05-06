@@ -8,29 +8,26 @@ import type { UserRole } from "@/lib/utils/constants";
 interface ProtectedRouteProps {
   children: ReactNode;
   allowedRoles?: UserRole[];
+  allowStaff?: boolean;
   redirectTo?: string;
 }
 
 export function ProtectedRoute({
   children,
   allowedRoles,
+  allowStaff = false,
   redirectTo = "/login",
 }: ProtectedRouteProps) {
-  const { user, isLoading, isLoggedIn } = useAuth();
+  const { user, isLoading, isLoggedIn, isStaff } = useAuth();
   const router = useRouter();
+
+  const hasAccess = !allowedRoles || (user && (allowedRoles.includes(user.role) || (allowStaff && isStaff)));
 
   useEffect(() => {
     if (isLoading) return;
-
-    if (!isLoggedIn) {
-      router.replace(redirectTo);
-      return;
-    }
-
-    if (allowedRoles && user && !allowedRoles.includes(user.role)) {
-      router.replace("/");
-    }
-  }, [isLoading, isLoggedIn, user, allowedRoles, redirectTo, router]);
+    if (!isLoggedIn) { router.replace(redirectTo); return; }
+    if (!hasAccess) router.replace("/");
+  }, [isLoading, isLoggedIn, hasAccess, redirectTo, router]);
 
   if (isLoading) {
     return (
@@ -40,8 +37,7 @@ export function ProtectedRoute({
     );
   }
 
-  if (!isLoggedIn) return null;
-  if (allowedRoles && user && !allowedRoles.includes(user.role)) return null;
+  if (!isLoggedIn || !hasAccess) return null;
 
   return <>{children}</>;
 }

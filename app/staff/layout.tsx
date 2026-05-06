@@ -1,26 +1,23 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { ScanLine, ChevronLeft, LogOut, User } from "lucide-react";
 import Link from "next/link";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { LayoutDashboard, LogOut, User } from "lucide-react";
 import { useAuth } from "@/lib/auth/context";
 
-export default function ScanLayout({ children }: { children: ReactNode }) {
-  const { isLoggedIn, isGateScanner, isLoading, user, logout } = useAuth();
+export default function StaffLayout({ children }: { children: ReactNode }) {
+  const { isLoggedIn, isStaff, isLoading, user, logout } = useAuth();
   const router = useRouter();
-  const pathname = usePathname();
-
-  const isHome = pathname === "/scan";
 
   useEffect(() => {
     if (isLoading) return;
     if (!isLoggedIn) { router.replace("/login"); return; }
-    if (!isGateScanner) router.replace("/");
-  }, [isLoading, isLoggedIn, isGateScanner, router]);
+    if (!isStaff) router.replace("/");
+  }, [isLoading, isLoggedIn, isStaff, router]);
 
-  if (isLoading || !isLoggedIn || !isGateScanner) {
+  if (isLoading || !isLoggedIn || !isStaff) {
     return (
       <div className="flex min-h-screen items-center justify-center">
         <div className="h-8 w-8 animate-spin rounded-full border-4 border-zinc-300 border-t-zinc-900" />
@@ -37,26 +34,13 @@ export default function ScanLayout({ children }: { children: ReactNode }) {
     <div className="flex min-h-screen flex-col bg-zinc-50 dark:bg-zinc-900">
       <header className="sticky top-0 z-40 border-b border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
         <div className="flex h-14 items-center justify-between px-4">
-          {/* Kiri: back button atau logo */}
-          {isHome ? (
-            <Link
-              href="/scan"
-              className="flex items-center gap-2 font-bold text-zinc-900 dark:text-white"
-            >
-              <ScanLine className="h-5 w-5" />
-              Gate Scanner
-            </Link>
-          ) : (
-            <button
-              onClick={() => router.push("/scan")}
-              className="flex items-center gap-1 font-medium text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-            >
-              <ChevronLeft className="h-5 w-5" />
-              Kembali
-            </button>
-          )}
-
-          {/* Kanan: info user + logout */}
+          <Link
+            href="/staff"
+            className="flex items-center gap-2 font-bold text-zinc-900 dark:text-white"
+          >
+            <LayoutDashboard className="h-5 w-5" />
+            Staff Dashboard
+          </Link>
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400">
               <User className="h-4 w-4" />
@@ -72,7 +56,6 @@ export default function ScanLayout({ children }: { children: ReactNode }) {
           </div>
         </div>
       </header>
-
       <main className="flex flex-1 flex-col p-4">{children}</main>
     </div>
   );

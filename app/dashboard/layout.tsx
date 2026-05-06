@@ -41,7 +41,7 @@ function DashboardTopbar() {
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   return (
-    <ProtectedRoute allowedRoles={["organizer"]}>
+    <ProtectedRoute allowedRoles={["organizer"]} allowStaff>
       <div className="flex h-screen flex-col">
         <DashboardTopbar />
         <div className="flex flex-1 overflow-hidden">
