@@ -1,0 +1,3281 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Ticketing API",
+    "description": "Development documentation",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/v1/auth/register": {
+      "post": {
+        "parameters": [],
+        "operationId": "postV1AuthRegister",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email",
+                  "password",
+                  "full_name"
+                ],
+                "properties": {
+                  "email": {
+                    "format": "email",
+                    "type": "string"
+                  },
+                  "password": {
+                    "minLength": 8,
+                    "type": "string"
+                  },
+                  "full_name": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email",
+                  "password",
+                  "full_name"
+                ],
+                "properties": {
+                  "email": {
+                    "format": "email",
+                    "type": "string"
+                  },
+                  "password": {
+                    "minLength": 8,
+                    "type": "string"
+                  },
+                  "full_name": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email",
+                  "password",
+                  "full_name"
+                ],
+                "properties": {
+                  "email": {
+                    "format": "email",
+                    "type": "string"
+                  },
+                  "password": {
+                    "minLength": 8,
+                    "type": "string"
+                  },
+                  "full_name": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/auth/login": {
+      "post": {
+        "parameters": [],
+        "operationId": "postV1AuthLogin",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email",
+                  "password"
+                ],
+                "properties": {
+                  "email": {
+                    "format": "email",
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email",
+                  "password"
+                ],
+                "properties": {
+                  "email": {
+                    "format": "email",
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email",
+                  "password"
+                ],
+                "properties": {
+                  "email": {
+                    "format": "email",
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/auth/refresh": {
+      "post": {
+        "parameters": [],
+        "operationId": "postV1AuthRefresh",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "refresh_token"
+                ],
+                "properties": {
+                  "refresh_token": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "refresh_token"
+                ],
+                "properties": {
+                  "refresh_token": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "refresh_token"
+                ],
+                "properties": {
+                  "refresh_token": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/auth/logout": {
+      "post": {
+        "parameters": [],
+        "operationId": "postV1AuthLogout",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "refresh_token": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "refresh_token": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "refresh_token": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/auth/verify-email": {
+      "post": {
+        "parameters": [],
+        "operationId": "postV1AuthVerify-email",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "token"
+                ],
+                "properties": {
+                  "token": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "token"
+                ],
+                "properties": {
+                  "token": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "token"
+                ],
+                "properties": {
+                  "token": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/auth/resend-verification": {
+      "post": {
+        "parameters": [],
+        "operationId": "postV1AuthResend-verification",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email"
+                ],
+                "properties": {
+                  "email": {
+                    "format": "email",
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email"
+                ],
+                "properties": {
+                  "email": {
+                    "format": "email",
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email"
+                ],
+                "properties": {
+                  "email": {
+                    "format": "email",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/auth/forgot-password": {
+      "post": {
+        "parameters": [],
+        "operationId": "postV1AuthForgot-password",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email"
+                ],
+                "properties": {
+                  "email": {
+                    "format": "email",
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email"
+                ],
+                "properties": {
+                  "email": {
+                    "format": "email",
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email"
+                ],
+                "properties": {
+                  "email": {
+                    "format": "email",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/auth/reset-password": {
+      "post": {
+        "parameters": [],
+        "operationId": "postV1AuthReset-password",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "token",
+                  "password"
+                ],
+                "properties": {
+                  "token": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "minLength": 8,
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "token",
+                  "password"
+                ],
+                "properties": {
+                  "token": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "minLength": 8,
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "token",
+                  "password"
+                ],
+                "properties": {
+                  "token": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "minLength": 8,
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/auth/me": {
+      "get": {
+        "operationId": "getV1AuthMe",
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/events": {
+      "get": {
+        "operationId": "getV1Events",
+        "responses": {
+          "200": {}
+        }
+      },
+      "post": {
+        "parameters": [],
+        "operationId": "postV1Events",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "title",
+                  "description",
+                  "category_id",
+                  "starts_at",
+                  "ends_at"
+                ],
+                "properties": {
+                  "title": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "category_id": {
+                    "type": "string"
+                  },
+                  "event_type": {
+                    "anyOf": [
+                      {
+                        "const": "offline",
+                        "type": "string"
+                      },
+                      {
+                        "const": "online",
+                        "type": "string"
+                      },
+                      {
+                        "const": "hybrid",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "venue_name": {
+                    "type": "string"
+                  },
+                  "venue_address": {
+                    "type": "string"
+                  },
+                  "venue_city": {
+                    "type": "string"
+                  },
+                  "venue_maps_url": {
+                    "type": "string"
+                  },
+                  "online_url": {
+                    "type": "string"
+                  },
+                  "starts_at": {
+                    "type": "string"
+                  },
+                  "ends_at": {
+                    "type": "string"
+                  },
+                  "sale_starts_at": {
+                    "type": "string"
+                  },
+                  "sale_ends_at": {
+                    "type": "string"
+                  },
+                  "visibility": {
+                    "anyOf": [
+                      {
+                        "const": "public",
+                        "type": "string"
+                      },
+                      {
+                        "const": "private",
+                        "type": "string"
+                      },
+                      {
+                        "const": "unlisted",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "is_high_demand": {
+                    "type": "boolean"
+                  },
+                  "allow_attendance_list": {
+                    "type": "boolean"
+                  },
+                  "total_capacity": {
+                    "type": "number"
+                  },
+                  "refund_policy": {
+                    "type": "string"
+                  },
+                  "banner_url": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "title",
+                  "description",
+                  "category_id",
+                  "starts_at",
+                  "ends_at"
+                ],
+                "properties": {
+                  "title": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "category_id": {
+                    "type": "string"
+                  },
+                  "event_type": {
+                    "anyOf": [
+                      {
+                        "const": "offline",
+                        "type": "string"
+                      },
+                      {
+                        "const": "online",
+                        "type": "string"
+                      },
+                      {
+                        "const": "hybrid",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "venue_name": {
+                    "type": "string"
+                  },
+                  "venue_address": {
+                    "type": "string"
+                  },
+                  "venue_city": {
+                    "type": "string"
+                  },
+                  "venue_maps_url": {
+                    "type": "string"
+                  },
+                  "online_url": {
+                    "type": "string"
+                  },
+                  "starts_at": {
+                    "type": "string"
+                  },
+                  "ends_at": {
+                    "type": "string"
+                  },
+                  "sale_starts_at": {
+                    "type": "string"
+                  },
+                  "sale_ends_at": {
+                    "type": "string"
+                  },
+                  "visibility": {
+                    "anyOf": [
+                      {
+                        "const": "public",
+                        "type": "string"
+                      },
+                      {
+                        "const": "private",
+                        "type": "string"
+                      },
+                      {
+                        "const": "unlisted",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "is_high_demand": {
+                    "type": "boolean"
+                  },
+                  "allow_attendance_list": {
+                    "type": "boolean"
+                  },
+                  "total_capacity": {
+                    "type": "number"
+                  },
+                  "refund_policy": {
+                    "type": "string"
+                  },
+                  "banner_url": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "title",
+                  "description",
+                  "category_id",
+                  "starts_at",
+                  "ends_at"
+                ],
+                "properties": {
+                  "title": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "category_id": {
+                    "type": "string"
+                  },
+                  "event_type": {
+                    "anyOf": [
+                      {
+                        "const": "offline",
+                        "type": "string"
+                      },
+                      {
+                        "const": "online",
+                        "type": "string"
+                      },
+                      {
+                        "const": "hybrid",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "venue_name": {
+                    "type": "string"
+                  },
+                  "venue_address": {
+                    "type": "string"
+                  },
+                  "venue_city": {
+                    "type": "string"
+                  },
+                  "venue_maps_url": {
+                    "type": "string"
+                  },
+                  "online_url": {
+                    "type": "string"
+                  },
+                  "starts_at": {
+                    "type": "string"
+                  },
+                  "ends_at": {
+                    "type": "string"
+                  },
+                  "sale_starts_at": {
+                    "type": "string"
+                  },
+                  "sale_ends_at": {
+                    "type": "string"
+                  },
+                  "visibility": {
+                    "anyOf": [
+                      {
+                        "const": "public",
+                        "type": "string"
+                      },
+                      {
+                        "const": "private",
+                        "type": "string"
+                      },
+                      {
+                        "const": "unlisted",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "is_high_demand": {
+                    "type": "boolean"
+                  },
+                  "allow_attendance_list": {
+                    "type": "boolean"
+                  },
+                  "total_capacity": {
+                    "type": "number"
+                  },
+                  "refund_policy": {
+                    "type": "string"
+                  },
+                  "banner_url": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/events/categories": {
+      "get": {
+        "operationId": "getV1EventsCategories",
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/events/{id}": {
+      "get": {
+        "operationId": "getV1EventsById",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {}
+        }
+      },
+      "put": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "operationId": "putV1EventsById",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "category_id": {
+                    "type": "string"
+                  },
+                  "event_type": {
+                    "anyOf": [
+                      {
+                        "const": "offline",
+                        "type": "string"
+                      },
+                      {
+                        "const": "online",
+                        "type": "string"
+                      },
+                      {
+                        "const": "hybrid",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "venue_name": {
+                    "type": "string"
+                  },
+                  "venue_address": {
+                    "type": "string"
+                  },
+                  "venue_city": {
+                    "type": "string"
+                  },
+                  "venue_maps_url": {
+                    "type": "string"
+                  },
+                  "online_url": {
+                    "type": "string"
+                  },
+                  "starts_at": {
+                    "type": "string"
+                  },
+                  "ends_at": {
+                    "type": "string"
+                  },
+                  "sale_starts_at": {
+                    "type": "string"
+                  },
+                  "sale_ends_at": {
+                    "type": "string"
+                  },
+                  "visibility": {
+                    "anyOf": [
+                      {
+                        "const": "public",
+                        "type": "string"
+                      },
+                      {
+                        "const": "private",
+                        "type": "string"
+                      },
+                      {
+                        "const": "unlisted",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "is_high_demand": {
+                    "type": "boolean"
+                  },
+                  "allow_attendance_list": {
+                    "type": "boolean"
+                  },
+                  "total_capacity": {
+                    "type": "number"
+                  },
+                  "refund_policy": {
+                    "type": "string"
+                  },
+                  "banner_url": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "category_id": {
+                    "type": "string"
+                  },
+                  "event_type": {
+                    "anyOf": [
+                      {
+                        "const": "offline",
+                        "type": "string"
+                      },
+                      {
+                        "const": "online",
+                        "type": "string"
+                      },
+                      {
+                        "const": "hybrid",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "venue_name": {
+                    "type": "string"
+                  },
+                  "venue_address": {
+                    "type": "string"
+                  },
+                  "venue_city": {
+                    "type": "string"
+                  },
+                  "venue_maps_url": {
+                    "type": "string"
+                  },
+                  "online_url": {
+                    "type": "string"
+                  },
+                  "starts_at": {
+                    "type": "string"
+                  },
+                  "ends_at": {
+                    "type": "string"
+                  },
+                  "sale_starts_at": {
+                    "type": "string"
+                  },
+                  "sale_ends_at": {
+                    "type": "string"
+                  },
+                  "visibility": {
+                    "anyOf": [
+                      {
+                        "const": "public",
+                        "type": "string"
+                      },
+                      {
+                        "const": "private",
+                        "type": "string"
+                      },
+                      {
+                        "const": "unlisted",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "is_high_demand": {
+                    "type": "boolean"
+                  },
+                  "allow_attendance_list": {
+                    "type": "boolean"
+                  },
+                  "total_capacity": {
+                    "type": "number"
+                  },
+                  "refund_policy": {
+                    "type": "string"
+                  },
+                  "banner_url": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "category_id": {
+                    "type": "string"
+                  },
+                  "event_type": {
+                    "anyOf": [
+                      {
+                        "const": "offline",
+                        "type": "string"
+                      },
+                      {
+                        "const": "online",
+                        "type": "string"
+                      },
+                      {
+                        "const": "hybrid",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "venue_name": {
+                    "type": "string"
+                  },
+                  "venue_address": {
+                    "type": "string"
+                  },
+                  "venue_city": {
+                    "type": "string"
+                  },
+                  "venue_maps_url": {
+                    "type": "string"
+                  },
+                  "online_url": {
+                    "type": "string"
+                  },
+                  "starts_at": {
+                    "type": "string"
+                  },
+                  "ends_at": {
+                    "type": "string"
+                  },
+                  "sale_starts_at": {
+                    "type": "string"
+                  },
+                  "sale_ends_at": {
+                    "type": "string"
+                  },
+                  "visibility": {
+                    "anyOf": [
+                      {
+                        "const": "public",
+                        "type": "string"
+                      },
+                      {
+                        "const": "private",
+                        "type": "string"
+                      },
+                      {
+                        "const": "unlisted",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "is_high_demand": {
+                    "type": "boolean"
+                  },
+                  "allow_attendance_list": {
+                    "type": "boolean"
+                  },
+                  "total_capacity": {
+                    "type": "number"
+                  },
+                  "refund_policy": {
+                    "type": "string"
+                  },
+                  "banner_url": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {}
+        }
+      },
+      "delete": {
+        "operationId": "deleteV1EventsById",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/events/{id}/publish": {
+      "post": {
+        "operationId": "postV1EventsByIdPublish",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/events/{id}/cancel": {
+      "post": {
+        "operationId": "postV1EventsByIdCancel",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/events/{id}/attendees": {
+      "get": {
+        "operationId": "getV1EventsByIdAttendees",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/events/{id}/stats": {
+      "get": {
+        "operationId": "getV1EventsByIdStats",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/events/{id}/ticket-types": {
+      "get": {
+        "operationId": "getV1EventsByIdTicket-types",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {}
+        }
+      },
+      "post": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "operationId": "postV1EventsByIdTicket-types",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "price",
+                  "quota"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "quota": {
+                    "minimum": 1,
+                    "type": "number"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "max_per_user": {
+                    "type": "number"
+                  },
+                  "is_early_bird": {
+                    "type": "boolean"
+                  },
+                  "early_bird_ends_at": {
+                    "type": "string"
+                  },
+                  "early_bird_quota": {
+                    "type": "number"
+                  },
+                  "is_visible": {
+                    "type": "boolean"
+                  },
+                  "sort_order": {
+                    "type": "number"
+                  },
+                  "sale_starts_at": {
+                    "type": "string"
+                  },
+                  "sale_ends_at": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "price",
+                  "quota"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "quota": {
+                    "minimum": 1,
+                    "type": "number"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "max_per_user": {
+                    "type": "number"
+                  },
+                  "is_early_bird": {
+                    "type": "boolean"
+                  },
+                  "early_bird_ends_at": {
+                    "type": "string"
+                  },
+                  "early_bird_quota": {
+                    "type": "number"
+                  },
+                  "is_visible": {
+                    "type": "boolean"
+                  },
+                  "sort_order": {
+                    "type": "number"
+                  },
+                  "sale_starts_at": {
+                    "type": "string"
+                  },
+                  "sale_ends_at": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "price",
+                  "quota"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "quota": {
+                    "minimum": 1,
+                    "type": "number"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "max_per_user": {
+                    "type": "number"
+                  },
+                  "is_early_bird": {
+                    "type": "boolean"
+                  },
+                  "early_bird_ends_at": {
+                    "type": "string"
+                  },
+                  "early_bird_quota": {
+                    "type": "number"
+                  },
+                  "is_visible": {
+                    "type": "boolean"
+                  },
+                  "sort_order": {
+                    "type": "number"
+                  },
+                  "sale_starts_at": {
+                    "type": "string"
+                  },
+                  "sale_ends_at": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/events/{id}/ticket-types/{typeId}": {
+      "put": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "typeId",
+            "required": true
+          }
+        ],
+        "operationId": "putV1EventsByIdTicket-typesByTypeId",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": true,
+                "type": "object",
+                "properties": {}
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "additionalProperties": true,
+                "type": "object",
+                "properties": {}
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "additionalProperties": true,
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {}
+        }
+      },
+      "delete": {
+        "operationId": "deleteV1EventsByIdTicket-typesByTypeId",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "typeId",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/events/{id}/staff": {
+      "post": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "operationId": "postV1EventsByIdStaff",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email",
+                  "role"
+                ],
+                "properties": {
+                  "email": {
+                    "format": "email",
+                    "type": "string"
+                  },
+                  "role": {
+                    "anyOf": [
+                      {
+                        "const": "co_organizer",
+                        "type": "string"
+                      },
+                      {
+                        "const": "gate_scanner",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "permissions": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email",
+                  "role"
+                ],
+                "properties": {
+                  "email": {
+                    "format": "email",
+                    "type": "string"
+                  },
+                  "role": {
+                    "anyOf": [
+                      {
+                        "const": "co_organizer",
+                        "type": "string"
+                      },
+                      {
+                        "const": "gate_scanner",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "permissions": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email",
+                  "role"
+                ],
+                "properties": {
+                  "email": {
+                    "format": "email",
+                    "type": "string"
+                  },
+                  "role": {
+                    "anyOf": [
+                      {
+                        "const": "co_organizer",
+                        "type": "string"
+                      },
+                      {
+                        "const": "gate_scanner",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "permissions": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/events/{id}/staff/{userId}": {
+      "delete": {
+        "operationId": "deleteV1EventsByIdStaffByUserId",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "userId",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/events/{id}/blast-message": {
+      "post": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "operationId": "postV1EventsByIdBlast-message",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "subject",
+                  "message"
+                ],
+                "properties": {
+                  "subject": {
+                    "type": "string"
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "subject",
+                  "message"
+                ],
+                "properties": {
+                  "subject": {
+                    "type": "string"
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "subject",
+                  "message"
+                ],
+                "properties": {
+                  "subject": {
+                    "type": "string"
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/events/{id}/checkin-stream": {
+      "get": {
+        "operationId": "getV1EventsByIdCheckin-stream",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/events/{id}/waiting-room/join": {
+      "post": {
+        "operationId": "postV1EventsByIdWaiting-roomJoin",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/events/{id}/waiting-room/position": {
+      "get": {
+        "operationId": "getV1EventsByIdWaiting-roomPosition",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/events/{id}/waiting-room/leave": {
+      "delete": {
+        "operationId": "deleteV1EventsByIdWaiting-roomLeave",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/orders": {
+      "post": {
+        "parameters": [],
+        "operationId": "postV1Orders",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "event_id",
+                  "items"
+                ],
+                "properties": {
+                  "event_id": {
+                    "type": "string"
+                  },
+                  "checkout_token": {
+                    "type": "string"
+                  },
+                  "items": {
+                    "minItems": 1,
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "ticket_type_id",
+                        "quantity"
+                      ],
+                      "properties": {
+                        "ticket_type_id": {
+                          "type": "string"
+                        },
+                        "quantity": {
+                          "minimum": 1,
+                          "type": "number"
+                        },
+                        "form_answers": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "field_id",
+                              "answer"
+                            ],
+                            "properties": {
+                              "field_id": {
+                                "type": "string"
+                              },
+                              "answer": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "promo_code": {
+                    "type": "string"
+                  },
+                  "guest_email": {
+                    "format": "email",
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "event_id",
+                  "items"
+                ],
+                "properties": {
+                  "event_id": {
+                    "type": "string"
+                  },
+                  "checkout_token": {
+                    "type": "string"
+                  },
+                  "items": {
+                    "minItems": 1,
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "ticket_type_id",
+                        "quantity"
+                      ],
+                      "properties": {
+                        "ticket_type_id": {
+                          "type": "string"
+                        },
+                        "quantity": {
+                          "minimum": 1,
+                          "type": "number"
+                        },
+                        "form_answers": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "field_id",
+                              "answer"
+                            ],
+                            "properties": {
+                              "field_id": {
+                                "type": "string"
+                              },
+                              "answer": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "promo_code": {
+                    "type": "string"
+                  },
+                  "guest_email": {
+                    "format": "email",
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "event_id",
+                  "items"
+                ],
+                "properties": {
+                  "event_id": {
+                    "type": "string"
+                  },
+                  "checkout_token": {
+                    "type": "string"
+                  },
+                  "items": {
+                    "minItems": 1,
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "ticket_type_id",
+                        "quantity"
+                      ],
+                      "properties": {
+                        "ticket_type_id": {
+                          "type": "string"
+                        },
+                        "quantity": {
+                          "minimum": 1,
+                          "type": "number"
+                        },
+                        "form_answers": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "field_id",
+                              "answer"
+                            ],
+                            "properties": {
+                              "field_id": {
+                                "type": "string"
+                              },
+                              "answer": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "promo_code": {
+                    "type": "string"
+                  },
+                  "guest_email": {
+                    "format": "email",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {}
+        }
+      },
+      "get": {
+        "operationId": "getV1Orders",
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/checkout/validate-promo": {
+      "post": {
+        "parameters": [],
+        "operationId": "postV1CheckoutValidate-promo",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "event_id",
+                  "code",
+                  "items"
+                ],
+                "properties": {
+                  "event_id": {
+                    "type": "string"
+                  },
+                  "code": {
+                    "type": "string"
+                  },
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "ticket_type_id",
+                        "quantity"
+                      ],
+                      "properties": {
+                        "ticket_type_id": {
+                          "type": "string"
+                        },
+                        "quantity": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "event_id",
+                  "code",
+                  "items"
+                ],
+                "properties": {
+                  "event_id": {
+                    "type": "string"
+                  },
+                  "code": {
+                    "type": "string"
+                  },
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "ticket_type_id",
+                        "quantity"
+                      ],
+                      "properties": {
+                        "ticket_type_id": {
+                          "type": "string"
+                        },
+                        "quantity": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "event_id",
+                  "code",
+                  "items"
+                ],
+                "properties": {
+                  "event_id": {
+                    "type": "string"
+                  },
+                  "code": {
+                    "type": "string"
+                  },
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "ticket_type_id",
+                        "quantity"
+                      ],
+                      "properties": {
+                        "ticket_type_id": {
+                          "type": "string"
+                        },
+                        "quantity": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/orders/{id}": {
+      "get": {
+        "operationId": "getV1OrdersById",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/orders/{id}/cancel": {
+      "post": {
+        "operationId": "postV1OrdersByIdCancel",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/orders/{id}/payment-status": {
+      "get": {
+        "operationId": "getV1OrdersByIdPayment-status",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/payments/webhook": {
+      "post": {
+        "parameters": [],
+        "operationId": "postV1PaymentsWebhook",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": true,
+                "type": "object",
+                "properties": {}
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "additionalProperties": true,
+                "type": "object",
+                "properties": {}
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "additionalProperties": true,
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/tickets/": {
+      "get": {
+        "operationId": "getV1Tickets",
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/tickets/resend": {
+      "post": {
+        "parameters": [],
+        "operationId": "postV1TicketsResend",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email",
+                  "order_number"
+                ],
+                "properties": {
+                  "email": {
+                    "format": "email",
+                    "type": "string"
+                  },
+                  "order_number": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email",
+                  "order_number"
+                ],
+                "properties": {
+                  "email": {
+                    "format": "email",
+                    "type": "string"
+                  },
+                  "order_number": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email",
+                  "order_number"
+                ],
+                "properties": {
+                  "email": {
+                    "format": "email",
+                    "type": "string"
+                  },
+                  "order_number": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/tickets/{code}": {
+      "get": {
+        "operationId": "getV1TicketsByCode",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "code",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/tickets/{code}/qr": {
+      "get": {
+        "operationId": "getV1TicketsByCodeQr",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "code",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/tickets/{code}/validate": {
+      "post": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "code",
+            "required": true
+          }
+        ],
+        "operationId": "postV1TicketsByCodeValidate",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "event_id"
+                ],
+                "properties": {
+                  "event_id": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "event_id"
+                ],
+                "properties": {
+                  "event_id": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "event_id"
+                ],
+                "properties": {
+                  "event_id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/organizers/{id}": {
+      "get": {
+        "operationId": "getV1OrganizersById",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/organizers/{id}/follow": {
+      "post": {
+        "operationId": "postV1OrganizersByIdFollow",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {}
+        }
+      },
+      "delete": {
+        "operationId": "deleteV1OrganizersByIdFollow",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/organizers/me": {
+      "get": {
+        "operationId": "getV1OrganizersMe",
+        "responses": {
+          "200": {}
+        }
+      },
+      "put": {
+        "parameters": [],
+        "operationId": "putV1OrganizersMe",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "brand_name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "logo_url": {
+                    "type": "string"
+                  },
+                  "website_url": {
+                    "type": "string"
+                  },
+                  "instagram_url": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "brand_name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "logo_url": {
+                    "type": "string"
+                  },
+                  "website_url": {
+                    "type": "string"
+                  },
+                  "instagram_url": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "brand_name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "logo_url": {
+                    "type": "string"
+                  },
+                  "website_url": {
+                    "type": "string"
+                  },
+                  "instagram_url": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/organizers/me/kyc": {
+      "post": {
+        "parameters": [],
+        "operationId": "postV1OrganizersMeKyc",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "ktp_url",
+                  "bank_name",
+                  "bank_account_number",
+                  "bank_account_name"
+                ],
+                "properties": {
+                  "ktp_url": {
+                    "type": "string"
+                  },
+                  "npwp_url": {
+                    "type": "string"
+                  },
+                  "bank_name": {
+                    "type": "string"
+                  },
+                  "bank_account_number": {
+                    "type": "string"
+                  },
+                  "bank_account_name": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "ktp_url",
+                  "bank_name",
+                  "bank_account_number",
+                  "bank_account_name"
+                ],
+                "properties": {
+                  "ktp_url": {
+                    "type": "string"
+                  },
+                  "npwp_url": {
+                    "type": "string"
+                  },
+                  "bank_name": {
+                    "type": "string"
+                  },
+                  "bank_account_number": {
+                    "type": "string"
+                  },
+                  "bank_account_name": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "ktp_url",
+                  "bank_name",
+                  "bank_account_number",
+                  "bank_account_name"
+                ],
+                "properties": {
+                  "ktp_url": {
+                    "type": "string"
+                  },
+                  "npwp_url": {
+                    "type": "string"
+                  },
+                  "bank_name": {
+                    "type": "string"
+                  },
+                  "bank_account_number": {
+                    "type": "string"
+                  },
+                  "bank_account_name": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/payouts/balance": {
+      "get": {
+        "operationId": "getV1PayoutsBalance",
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/payouts/request": {
+      "post": {
+        "parameters": [],
+        "operationId": "postV1PayoutsRequest",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "amount"
+                ],
+                "properties": {
+                  "amount": {
+                    "minimum": 1,
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "amount"
+                ],
+                "properties": {
+                  "amount": {
+                    "minimum": 1,
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "amount"
+                ],
+                "properties": {
+                  "amount": {
+                    "minimum": 1,
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/payouts/": {
+      "get": {
+        "operationId": "getV1Payouts",
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/uploads/presigned": {
+      "post": {
+        "parameters": [],
+        "operationId": "postV1UploadsPresigned",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "filename",
+                  "content_type",
+                  "folder"
+                ],
+                "properties": {
+                  "filename": {
+                    "type": "string"
+                  },
+                  "content_type": {
+                    "type": "string"
+                  },
+                  "folder": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "filename",
+                  "content_type",
+                  "folder"
+                ],
+                "properties": {
+                  "filename": {
+                    "type": "string"
+                  },
+                  "content_type": {
+                    "type": "string"
+                  },
+                  "folder": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "filename",
+                  "content_type",
+                  "folder"
+                ],
+                "properties": {
+                  "filename": {
+                    "type": "string"
+                  },
+                  "content_type": {
+                    "type": "string"
+                  },
+                  "folder": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/admin/events": {
+      "get": {
+        "operationId": "getV1AdminEvents",
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/admin/events/{id}/approve": {
+      "post": {
+        "operationId": "postV1AdminEventsByIdApprove",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/admin/events/{id}/reject": {
+      "post": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "operationId": "postV1AdminEventsByIdReject",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "reason"
+                ],
+                "properties": {
+                  "reason": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "reason"
+                ],
+                "properties": {
+                  "reason": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "reason"
+                ],
+                "properties": {
+                  "reason": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/admin/events/{id}/suspend": {
+      "post": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "operationId": "postV1AdminEventsByIdSuspend",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "reason"
+                ],
+                "properties": {
+                  "reason": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "reason"
+                ],
+                "properties": {
+                  "reason": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "reason"
+                ],
+                "properties": {
+                  "reason": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/admin/organizers": {
+      "get": {
+        "operationId": "getV1AdminOrganizers",
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/admin/organizers/{userId}/approve": {
+      "post": {
+        "operationId": "postV1AdminOrganizersByUserIdApprove",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "userId",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/admin/organizers/{userId}/reject": {
+      "post": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "userId",
+            "required": true
+          }
+        ],
+        "operationId": "postV1AdminOrganizersByUserIdReject",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "reason"
+                ],
+                "properties": {
+                  "reason": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "reason"
+                ],
+                "properties": {
+                  "reason": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "reason"
+                ],
+                "properties": {
+                  "reason": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/admin/payouts": {
+      "get": {
+        "operationId": "getV1AdminPayouts",
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/admin/payouts/{id}/approve": {
+      "post": {
+        "operationId": "postV1AdminPayoutsByIdApprove",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/admin/payouts/{id}/reject": {
+      "post": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "operationId": "postV1AdminPayoutsByIdReject",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "reason"
+                ],
+                "properties": {
+                  "reason": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "reason"
+                ],
+                "properties": {
+                  "reason": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "reason"
+                ],
+                "properties": {
+                  "reason": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/admin/users": {
+      "get": {
+        "operationId": "getV1AdminUsers",
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/admin/users/{userId}/suspend": {
+      "post": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "userId",
+            "required": true
+          }
+        ],
+        "operationId": "postV1AdminUsersByUserIdSuspend",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "reason"
+                ],
+                "properties": {
+                  "reason": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "reason"
+                ],
+                "properties": {
+                  "reason": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "reason"
+                ],
+                "properties": {
+                  "reason": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/admin/users/{userId}/unsuspend": {
+      "post": {
+        "operationId": "postV1AdminUsersByUserIdUnsuspend",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "userId",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/admin/config": {
+      "get": {
+        "operationId": "getV1AdminConfig",
+        "responses": {
+          "200": {}
+        }
+      },
+      "put": {
+        "parameters": [],
+        "operationId": "putV1AdminConfig",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "platform_fee_flat",
+                  "platform_fee_percent"
+                ],
+                "properties": {
+                  "platform_fee_flat": {
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "platform_fee_percent": {
+                    "minimum": 0,
+                    "maximum": 1,
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "platform_fee_flat",
+                  "platform_fee_percent"
+                ],
+                "properties": {
+                  "platform_fee_flat": {
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "platform_fee_percent": {
+                    "minimum": 0,
+                    "maximum": 1,
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "platform_fee_flat",
+                  "platform_fee_percent"
+                ],
+                "properties": {
+                  "platform_fee_flat": {
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  "platform_fee_percent": {
+                    "minimum": 0,
+                    "maximum": 1,
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/v1/admin/stats": {
+      "get": {
+        "operationId": "getV1AdminStats",
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "operationId": "getHealth",
+        "responses": {
+          "200": {}
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}
