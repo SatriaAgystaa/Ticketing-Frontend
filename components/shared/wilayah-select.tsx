@@ -143,7 +143,7 @@ export function WilayahSelect({ value, onChange, errors }: WilayahSelectProps) {
             error={errors?.province}
           />
           {!loadingProv && value?.province && !provinsiId && (
-            <p className="text-xs text-zinc-500">Nilai saat ini: <span className="font-medium">{value.province}</span></p>
+            <p className="text-xs text-gray-500">Nilai saat ini: <span className="font-medium">{value.province}</span></p>
           )}
         </div>
         <Select

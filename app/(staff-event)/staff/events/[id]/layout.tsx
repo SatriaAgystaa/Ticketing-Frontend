@@ -41,8 +41,8 @@ export default function StaffEventLayout({
 
   if (isLoading || !isLoggedIn || !isStaff) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-zinc-950">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-zinc-700 border-t-white" />
+      <div className="flex min-h-screen items-center justify-center bg-gray-50">
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-200 border-t-indigo-600" />
       </div>
     );
   }
@@ -61,22 +61,22 @@ export default function StaffEventLayout({
   ];
 
   return (
-    <div className="flex min-h-screen flex-col bg-zinc-950 text-white">
+    <div className="flex min-h-screen flex-col bg-gray-50">
       {/* Top header */}
-      <header className="sticky top-0 z-40 border-b border-zinc-800 bg-zinc-950/95 backdrop-blur">
+      <header className="sticky top-0 z-40 border-b border-gray-200 bg-white/95 backdrop-blur-sm">
         <div className="flex h-14 items-center justify-between px-4 sm:px-6">
           <div className="flex items-center gap-2 min-w-0">
             <button
               onClick={() => router.push("/staff")}
-              className="flex items-center gap-1 text-sm text-zinc-400 hover:text-white transition-colors shrink-0"
+              className="flex items-center gap-1 text-sm text-gray-500 transition-colors hover:text-gray-900 shrink-0"
             >
               <ChevronLeft className="h-4 w-4" />
               <span className="hidden sm:inline">Staff Dashboard</span>
             </button>
             {staffEvent && (
               <>
-                <span className="text-zinc-700 shrink-0">/</span>
-                <span className="text-sm font-semibold text-white truncate max-w-[180px] sm:max-w-xs">
+                <span className="text-gray-300 shrink-0">/</span>
+                <span className="text-sm font-semibold text-gray-900 truncate max-w-[180px] sm:max-w-xs">
                   {staffEvent.event.title}
                 </span>
               </>
@@ -84,13 +84,13 @@ export default function StaffEventLayout({
           </div>
 
           <div className="flex items-center gap-2 shrink-0">
-            <div className="flex items-center gap-1.5 text-sm text-zinc-400">
+            <div className="flex items-center gap-1.5 text-sm text-gray-500">
               <User className="h-4 w-4" />
               <span className="hidden sm:inline">{user?.full_name?.split(" ")[0]}</span>
             </div>
             <button
               onClick={handleLogout}
-              className="flex items-center gap-1 rounded-md px-2 py-1 text-sm text-red-400 hover:bg-red-950 hover:text-red-300 transition-colors"
+              className="flex items-center gap-1 rounded-lg px-2.5 py-1.5 text-sm text-red-600 transition-colors hover:bg-red-50"
             >
               <LogOut className="h-4 w-4" />
               <span className="hidden sm:inline">Keluar</span>
@@ -99,17 +99,17 @@ export default function StaffEventLayout({
         </div>
 
         {/* Tab bar */}
-        <div className="flex overflow-x-auto border-t border-zinc-800 px-4 sm:px-6">
+        <div className="flex overflow-x-auto border-t border-gray-100 px-4 sm:px-6">
           {tabs.map((tab) => {
             const isActive = pathname === tab.href;
             return (
               <Link
                 key={tab.href}
                 href={tab.href}
-                className={`flex items-center gap-1.5 whitespace-nowrap px-4 py-3 text-sm font-medium border-b-2 transition-colors ${
+                className={`flex items-center gap-1.5 whitespace-nowrap px-4 py-2.5 text-sm font-medium border-b-2 transition-colors ${
                   isActive
-                    ? "border-white text-white"
-                    : "border-transparent text-zinc-500 hover:text-zinc-300"
+                    ? "border-indigo-600 text-indigo-600"
+                    : "border-transparent text-gray-500 hover:text-gray-700"
                 }`}
               >
                 {tab.icon}

@@ -68,10 +68,10 @@ export default function AdminConfigPage() {
   return (
     <div className="mx-auto max-w-lg space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">
+        <h1 className="text-2xl font-bold text-gray-900">
           Konfigurasi Platform
         </h1>
-        <p className="text-sm text-zinc-500 dark:text-zinc-400">
+        <p className="text-sm text-gray-500">
           Atur fee platform untuk setiap transaksi
         </p>
       </div>
@@ -81,7 +81,7 @@ export default function AdminConfigPage() {
           <CardTitle>Platform Fee</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <p className="text-sm text-zinc-500 dark:text-zinc-400">
+          <p className="text-sm text-gray-500">
             Fee dihitung sebagai: Fee Flat + (Harga Tiket x Fee Persen / 100).
             Fee dibebankan ke organizer dari setiap penjualan tiket.
           </p>
@@ -105,11 +105,11 @@ export default function AdminConfigPage() {
             onChange={(e) => setFeePercent(e.target.value)}
           />
 
-          <div className="rounded-lg bg-zinc-100 p-3 text-sm dark:bg-zinc-800">
-            <p className="font-medium text-zinc-700 dark:text-zinc-300">
+          <div className="rounded-lg bg-gray-100 p-3 text-sm">
+            <p className="font-medium text-gray-700">
               Simulasi
             </p>
-            <p className="text-zinc-500 dark:text-zinc-400">
+            <p className="text-gray-500">
               Tiket Rp 100.000 = Fee Rp{" "}
               {(
                 Number(feeFlat || 0) +

@@ -7,15 +7,15 @@ interface SpinnerProps {
 
 const sizes = {
   sm: "h-4 w-4 border-2",
-  md: "h-8 w-8 border-3",
-  lg: "h-12 w-12 border-4",
+  md: "h-6 w-6 border-2",
+  lg: "h-10 w-10 border-[3px]",
 };
 
 export function Spinner({ className, size = "md" }: SpinnerProps) {
   return (
     <div
       className={cn(
-        "animate-spin rounded-full border-zinc-300 border-t-zinc-900 dark:border-zinc-700 dark:border-t-zinc-100",
+        "animate-spin rounded-full border-gray-200 border-t-indigo-600",
         sizes[size],
         className,
       )}

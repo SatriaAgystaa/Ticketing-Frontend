@@ -16,15 +16,15 @@ export default function PublicError({
 
   return (
     <div className="mx-auto flex max-w-7xl flex-col items-center justify-center px-4 py-24 text-center sm:px-6 lg:px-8">
-      <div className="rounded-xl border border-red-200 bg-red-50 p-8 dark:border-red-900 dark:bg-red-950">
-        <h2 className="text-xl font-bold text-red-800 dark:text-red-200">
+      <div className="rounded-xl border border-red-200 bg-red-50 p-8">
+        <h2 className="text-xl font-bold text-red-800">
           Terjadi Kesalahan
         </h2>
-        <p className="mt-2 text-sm text-red-600 dark:text-red-400">
+        <p className="mt-2 text-sm text-red-600">
           Maaf, terjadi kesalahan saat memuat halaman ini. Silakan coba lagi.
         </p>
         {error.digest && (
-          <p className="mt-2 text-xs text-red-500 dark:text-red-500">
+          <p className="mt-2 text-xs text-red-500">
             Kode error: {error.digest}
           </p>
         )}

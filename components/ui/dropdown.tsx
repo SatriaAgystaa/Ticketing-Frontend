@@ -26,18 +26,25 @@ export function Dropdown({ trigger, items, className }: DropdownProps) {
       </MenuButton>
       <MenuItems
         transition
-        className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-lg border border-zinc-200 bg-white py-1 shadow-lg transition data-[closed]:scale-95 data-[closed]:opacity-0 dark:border-zinc-800 dark:bg-zinc-900"
+        className="absolute right-0 z-10 mt-2 w-52 origin-top-right rounded-xl border border-gray-200 bg-white py-1.5 shadow-lg ring-1 ring-black/5 transition data-[closed]:scale-95 data-[closed]:opacity-0"
       >
         {items.map((item) => (
           <MenuItem key={item.label}>
             <button
               onClick={item.onClick}
               className={cn(
-                "flex w-full items-center gap-2 px-3 py-2 text-left text-sm data-[focus]:bg-zinc-100 dark:data-[focus]:bg-zinc-800",
-                item.danger ? "text-red-600" : "text-zinc-700 dark:text-zinc-300",
+                "flex w-full items-center gap-2.5 px-3 py-2 text-left text-sm transition-colors",
+                "data-[focus]:bg-gray-50",
+                item.danger
+                  ? "text-red-600 data-[focus]:text-red-700"
+                  : "text-gray-700 data-[focus]:text-gray-900",
               )}
             >
-              {item.icon}
+              {item.icon && (
+                <span className={cn("shrink-0", item.danger ? "text-red-500" : "text-gray-400")}>
+                  {item.icon}
+                </span>
+              )}
               {item.label}
             </button>
           </MenuItem>
@@ -57,9 +64,9 @@ export function DropdownSimple({
   return (
     <Dropdown
       trigger={
-        <button className="inline-flex items-center gap-1 rounded-lg border border-zinc-200 px-3 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-50 dark:border-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-800">
+        <button className="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-700 shadow-xs transition-colors hover:bg-gray-50 hover:border-gray-300">
           {label}
-          <ChevronDown className="h-4 w-4" />
+          <ChevronDown className="h-3.5 w-3.5 text-gray-400" />
         </button>
       }
       items={items}

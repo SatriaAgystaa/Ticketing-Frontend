@@ -102,20 +102,20 @@ export default function RegisterPage() {
           />
         </CardContent>
         <CardFooter className="flex flex-col gap-4">
-          <Button type="submit" className="w-full" isLoading={isSubmitting}>
-            Daftar
+          <Button type="submit" variant="brand" className="w-full" isLoading={isSubmitting}>
+            Buat Akun
           </Button>
-          <p className="text-center text-sm text-zinc-500">
+          <p className="text-center text-sm text-gray-500">
             Sudah punya akun?{" "}
-            <Link href="/login" className="font-medium text-zinc-900 hover:underline dark:text-white">
+            <Link href="/login" className="font-medium text-indigo-600 hover:text-indigo-700">
               Masuk
             </Link>
           </p>
-          <div className="w-full rounded-lg border border-zinc-200 bg-zinc-50 px-4 py-3 text-center text-sm dark:border-zinc-800 dark:bg-zinc-900">
-            <p className="text-zinc-500 dark:text-zinc-400">Ingin jadi penyelenggara event?</p>
+          <div className="w-full rounded-xl border border-indigo-100 bg-indigo-50 px-4 py-3 text-center text-sm">
+            <p className="text-gray-600">Ingin jadi penyelenggara event?</p>
             <Link
               href="/register/organizer"
-              className="mt-1 inline-block font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400"
+              className="mt-1 inline-block font-medium text-indigo-600 hover:text-indigo-700"
             >
               Daftar sebagai Organizer →
             </Link>

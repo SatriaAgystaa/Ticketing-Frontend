@@ -64,9 +64,9 @@ export default function ScannerPage({
     <div className="mx-auto flex w-full max-w-md flex-col gap-4">
       {/* Info Event */}
       {staffEvent && (
-        <div className="rounded-xl bg-zinc-900 px-4 py-3 dark:bg-zinc-800">
-          <p className="font-semibold text-white">{staffEvent.event.title}</p>
-          <div className="mt-1 flex items-center gap-1 text-xs text-zinc-400">
+        <div className="rounded-xl border border-indigo-100 bg-indigo-50 px-4 py-3">
+          <p className="font-semibold text-indigo-900">{staffEvent.event.title}</p>
+          <div className="mt-1 flex items-center gap-1 text-xs text-indigo-500">
             <CalendarDays className="h-3 w-3" />
             {formatDate(staffEvent.event.starts_at)}
           </div>
@@ -75,7 +75,7 @@ export default function ScannerPage({
 
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h1 className="text-lg font-bold text-zinc-900 dark:text-white">
+        <h1 className="text-lg font-bold text-gray-900">
           Scan Tiket
         </h1>
         <Link href={`/scan/${eventId}/manual`}>
@@ -95,18 +95,18 @@ export default function ScannerPage({
 
       {/* Idle hint — tampil kalau belum ada result */}
       {!result && !isError && !isValidating && (
-        <div className="flex flex-col items-center gap-2 rounded-xl border border-dashed border-zinc-300 py-8 text-center dark:border-zinc-700">
-          <ScanLine className="h-8 w-8 text-zinc-400" />
-          <p className="text-sm font-medium text-zinc-500">Arahkan kamera ke QR Code tiket</p>
-          <p className="text-xs text-zinc-400">atau gunakan input Manual di atas</p>
+        <div className="flex flex-col items-center gap-2 rounded-xl border border-dashed border-gray-300 py-8 text-center">
+          <ScanLine className="h-8 w-8 text-gray-400" />
+          <p className="text-sm font-medium text-gray-500">Arahkan kamera ke QR Code tiket</p>
+          <p className="text-xs text-gray-400">atau gunakan input Manual di atas</p>
         </div>
       )}
 
       {/* Validation Loading */}
       {isValidating && (
-        <div className="flex flex-col items-center justify-center gap-3 rounded-xl bg-zinc-100 p-8 dark:bg-zinc-800">
-          <div className="h-8 w-8 animate-spin rounded-full border-4 border-zinc-300 border-t-zinc-900" />
-          <p className="text-sm text-zinc-500">Memvalidasi tiket...</p>
+        <div className="flex flex-col items-center justify-center gap-3 rounded-xl bg-gray-100 p-8">
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-300 border-t-indigo-600" />
+          <p className="text-sm text-gray-500">Memvalidasi tiket...</p>
         </div>
       )}
 

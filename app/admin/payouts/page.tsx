@@ -84,10 +84,10 @@ export default function AdminPayoutsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">
+        <h1 className="text-2xl font-bold text-gray-900">
           Payout
         </h1>
-        <p className="text-sm text-zinc-500 dark:text-zinc-400">
+        <p className="text-sm text-gray-500">
           Kelola permintaan penarikan dana organizer
         </p>
       </div>
@@ -112,7 +112,7 @@ export default function AdminPayoutsPage() {
             render: (p: Payout) => (
               <div>
                 <p className="text-sm">{p.bank_name}</p>
-                <p className="text-xs text-zinc-500">
+                <p className="text-xs text-gray-500">
                   {p.bank_account_number} - {p.bank_account_name}
                 </p>
               </div>
@@ -151,7 +151,7 @@ export default function AdminPayoutsPage() {
                   </Button>
                 </div>
               ) : (
-                <span className="text-xs text-zinc-400">-</span>
+                <span className="text-xs text-gray-400">-</span>
               ),
           },
         ]}

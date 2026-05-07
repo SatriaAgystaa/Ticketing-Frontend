@@ -82,10 +82,10 @@ export default function AdminEventsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">
+        <h1 className="text-2xl font-bold text-gray-900">
           Moderasi Event
         </h1>
-        <p className="text-sm text-zinc-500 dark:text-zinc-400">
+        <p className="text-sm text-gray-500">
           Approve, reject, atau suspend event
         </p>
       </div>
@@ -97,10 +97,10 @@ export default function AdminEventsPage() {
             header: "Event",
             render: (e: EventListItem) => (
               <div>
-                <p className="font-medium text-zinc-900 dark:text-white">
+                <p className="font-medium text-gray-900">
                   {e.title}
                 </p>
-                <p className="text-xs text-zinc-500">
+                <p className="text-xs text-gray-500">
                   {e.organizer.brand_name}
                 </p>
               </div>

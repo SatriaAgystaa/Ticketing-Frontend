@@ -17,19 +17,21 @@ function AdminTopbar() {
   };
 
   return (
-    <header className="flex h-14 items-center justify-between border-b border-zinc-200 bg-white px-6 dark:border-zinc-800 dark:bg-zinc-950">
-      <div className="flex items-center gap-2 font-bold text-zinc-900 dark:text-white">
-        <Ticket className="h-5 w-5" />
-        <span>Tiket Event</span>
-        <span className="ml-2 rounded-full bg-red-100 px-2 py-0.5 text-xs font-semibold text-red-700 dark:bg-red-900/30 dark:text-red-400">
+    <header className="flex h-14 items-center justify-between border-b border-gray-200 bg-white px-6">
+      <div className="flex items-center gap-2.5">
+        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gray-900">
+          <Ticket className="h-4 w-4 text-white" />
+        </div>
+        <span className="font-semibold text-gray-900">Tiket Event</span>
+        <span className="rounded-full bg-red-50 px-2 py-0.5 text-xs font-medium text-red-700 border border-red-200">
           Admin
         </span>
       </div>
       <div className="flex items-center gap-3">
-        <span className="text-sm text-zinc-500 dark:text-zinc-400">{user?.email}</span>
+        <span className="text-sm text-gray-500">{user?.email}</span>
         <button
           onClick={handleLogout}
-          className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-white"
+          className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
         >
           <LogOut className="h-4 w-4" />
           Keluar
@@ -46,7 +48,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
         <AdminTopbar />
         <div className="flex flex-1 overflow-hidden">
           <AdminSidebar />
-          <main className="flex-1 overflow-y-auto bg-zinc-50 p-6 dark:bg-zinc-900">
+          <main className="flex-1 overflow-y-auto bg-gray-50 p-6">
             {children}
           </main>
         </div>

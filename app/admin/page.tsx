@@ -89,11 +89,9 @@ export default function AdminDashboardPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">
-          Admin Dashboard
-        </h1>
-        <p className="text-sm text-zinc-500 dark:text-zinc-400">
-          Platform overview & statistics
+        <h1 className="text-xl font-bold text-gray-900">Admin Dashboard</h1>
+        <p className="mt-0.5 text-sm text-gray-500">
+          Platform overview &amp; statistics
         </p>
       </div>
 
@@ -101,17 +99,19 @@ export default function AdminDashboardPage() {
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {summaryCards.map((card) => (
           <Card key={card.label}>
-            <CardContent className="flex items-center gap-4 p-6">
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-800">
-                <card.icon className="h-6 w-6 text-zinc-600 dark:text-zinc-400" />
-              </div>
-              <div>
-                <p className="text-sm text-zinc-500 dark:text-zinc-400">
-                  {card.label}
-                </p>
-                <p className="text-xl font-bold text-zinc-900 dark:text-white">
-                  {card.value}
-                </p>
+            <CardContent className="p-5">
+              <div className="flex items-start justify-between">
+                <div>
+                  <p className="text-xs font-medium uppercase tracking-wide text-gray-500">
+                    {card.label}
+                  </p>
+                  <p className="mt-2 text-2xl font-bold text-gray-900">
+                    {card.value}
+                  </p>
+                </div>
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-100">
+                  <card.icon className="h-5 w-5 text-gray-600" />
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -120,11 +120,15 @@ export default function AdminDashboardPage() {
 
       {/* Tiket Terjual */}
       <Card>
-        <CardContent className="flex items-center gap-4 p-6">
-          <Ticket className="h-6 w-6 text-zinc-500" />
+        <CardContent className="flex items-center gap-4 p-5">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-50">
+            <Ticket className="h-5 w-5 text-violet-600" />
+          </div>
           <div>
-            <p className="text-sm text-zinc-500">Total Tiket Terjual</p>
-            <p className="text-2xl font-bold text-zinc-900 dark:text-white">
+            <p className="text-xs font-medium uppercase tracking-wide text-gray-500">
+              Total Tiket Terjual
+            </p>
+            <p className="mt-1 text-2xl font-bold text-gray-900">
               {stats.total_tickets_sold.toLocaleString("id-ID")}
             </p>
           </div>
@@ -141,15 +145,16 @@ export default function AdminDashboardPage() {
             <div className="h-80">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={stats.monthly_revenue}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="month" fontSize={12} />
-                  <YAxis fontSize={12} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
+                  <XAxis dataKey="month" fontSize={12} tick={{ fill: "#6b7280" }} axisLine={false} tickLine={false} />
+                  <YAxis fontSize={12} tick={{ fill: "#6b7280" }} axisLine={false} tickLine={false} />
                   <Tooltip
                     formatter={(value) => formatCurrency(Number(value))}
+                    contentStyle={{ borderRadius: "8px", border: "1px solid #e5e7eb", boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.07)" }}
                   />
                   <Bar
                     dataKey="amount"
-                    fill="#18181b"
+                    fill="#6366f1"
                     radius={[4, 4, 0, 0]}
                   />
                 </BarChart>

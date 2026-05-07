@@ -109,7 +109,7 @@ export function QrScanner({ onScan, onError, enabled = true }: QrScannerProps) {
 
       {!isReady && enabled && (
         <div className="absolute inset-0 flex aspect-square items-center justify-center">
-          <p className="text-sm text-zinc-400">Mengaktifkan kamera...</p>
+          <p className="text-sm text-gray-400">Mengaktifkan kamera...</p>
         </div>
       )}
     </div>

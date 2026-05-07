@@ -10,9 +10,9 @@ interface OrganizerBadgeProps {
 export function OrganizerBadge({ brandName, isVerified, className }: OrganizerBadgeProps) {
   return (
     <div className={cn("flex items-center gap-1.5", className)}>
-      <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">{brandName}</span>
+      <span className="text-sm font-medium text-gray-700">{brandName}</span>
       {isVerified && (
-        <BadgeCheck className="h-4 w-4 text-blue-500" />
+        <BadgeCheck className="h-4 w-4 text-indigo-500" />
       )}
     </div>
   );

@@ -34,21 +34,21 @@ export function ShareButtons({ url, title }: ShareButtonsProps) {
     <div className="flex items-center gap-2">
       <button
         onClick={copyLink}
-        className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-200 text-zinc-500 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900"
+        className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 text-gray-500 hover:bg-gray-50"
         title="Salin link"
       >
         <Link2 className="h-4 w-4" />
       </button>
       <button
         onClick={shareWhatsApp}
-        className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-200 text-zinc-500 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900"
+        className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 text-gray-500 hover:bg-gray-50"
         title="Bagikan ke WhatsApp"
       >
         <MessageCircle className="h-4 w-4" />
       </button>
       <button
         onClick={shareTwitter}
-        className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-200 text-zinc-500 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900"
+        className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 text-gray-500 hover:bg-gray-50"
         title="Bagikan ke X (Twitter)"
       >
         <span className="text-xs font-bold">𝕏</span>

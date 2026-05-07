@@ -79,20 +79,20 @@ export default function LoginPage() {
           <div className="flex justify-end">
             <Link
               href="/forgot-password"
-              className="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-300"
+              className="text-sm text-indigo-600 hover:text-indigo-700"
             >
               Lupa password?
             </Link>
           </div>
         </CardContent>
         <CardFooter className="flex flex-col gap-4">
-          <Button type="submit" className="w-full" isLoading={isSubmitting}>
+          <Button type="submit" variant="brand" className="w-full" isLoading={isSubmitting}>
             Masuk
           </Button>
-          <p className="text-center text-sm text-zinc-500">
+          <p className="text-center text-sm text-gray-500">
             Belum punya akun?{" "}
-            <Link href="/register" className="font-medium text-zinc-900 hover:underline dark:text-white">
-              Daftar
+            <Link href="/register" className="font-medium text-indigo-600 hover:text-indigo-700">
+              Daftar gratis
             </Link>
           </p>
         </CardFooter>

@@ -62,7 +62,7 @@ function PaymentStatusContent() {
 
   return (
     <div className="mx-auto max-w-lg px-4 py-12 text-center">
-      <h1 className="mb-2 text-2xl font-bold text-zinc-900 dark:text-white">
+      <h1 className="mb-2 text-2xl font-bold text-gray-900">
         Status Pembayaran
       </h1>
 
@@ -70,7 +70,7 @@ function PaymentStatusContent() {
         <>
           <div className="my-8 flex flex-col items-center gap-4">
             <Spinner />
-            <p className="text-zinc-600 dark:text-zinc-400">
+            <p className="text-gray-600">
               Menunggu konfirmasi pembayaran...
             </p>
           </div>
@@ -87,13 +87,13 @@ function PaymentStatusContent() {
           </div>
 
           {payment?.payment_method && (
-            <p className="mt-4 text-sm text-zinc-500 dark:text-zinc-400">
+            <p className="mt-4 text-sm text-gray-500">
               Metode: {payment.payment_method}
             </p>
           )}
 
-          <div className="mt-8 rounded-lg border border-dashed border-zinc-300 p-4 dark:border-zinc-700">
-            <p className="mb-3 text-xs text-zinc-500 dark:text-zinc-400">
+          <div className="mt-8 rounded-lg border border-dashed border-gray-300 p-4">
+            <p className="mb-3 text-xs text-gray-500">
               Mode pengembangan — simulasi pembayaran
             </p>
             <Button
@@ -112,7 +112,7 @@ function PaymentStatusContent() {
       {isFailed && (
         <div className="my-8 space-y-4">
           <Badge variant="danger">Pembayaran Gagal</Badge>
-          <p className="text-zinc-600 dark:text-zinc-400">
+          <p className="text-gray-600">
             Pembayaran tidak berhasil. Silakan coba lagi.
           </p>
           <Button onClick={() => router.push(`/checkout/${eventId}`)}>
@@ -124,7 +124,7 @@ function PaymentStatusContent() {
       {isPaid && (
         <div className="my-8 space-y-4">
           <Badge variant="success">Pembayaran Berhasil</Badge>
-          <p className="text-zinc-600 dark:text-zinc-400">
+          <p className="text-gray-600">
             Mengalihkan ke detail pesanan...
           </p>
         </div>

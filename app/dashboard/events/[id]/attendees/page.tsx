@@ -93,10 +93,10 @@ export default function AttendeesPage({
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">
+          <h1 className="text-2xl font-bold text-gray-900">
             Daftar Peserta
           </h1>
-          <p className="text-sm text-zinc-500 dark:text-zinc-400">
+          <p className="text-sm text-gray-500">
             {attendees.length} peserta terdaftar
           </p>
         </div>
@@ -107,11 +107,11 @@ export default function AttendeesPage({
       </div>
 
       <div className="relative max-w-sm">
-        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400" />
+        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
         <input
           type="text"
           placeholder="Cari nama, email, atau kode tiket..."
-          className="w-full rounded-lg border border-zinc-200 bg-white py-2 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-zinc-950 dark:border-zinc-800 dark:bg-zinc-950 dark:text-white"
+          className="w-full rounded-lg border border-gray-200 bg-white py-2 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
@@ -133,7 +133,7 @@ export default function AttendeesPage({
             key: "ticket_code",
             header: "Kode Tiket",
             render: (a: Attendee) => (
-              <code className="rounded bg-zinc-100 px-2 py-0.5 text-xs font-mono dark:bg-zinc-800">
+              <code className="rounded bg-gray-100 px-2 py-0.5 text-xs font-mono">
                 {a.ticket_code}
               </code>
             ),

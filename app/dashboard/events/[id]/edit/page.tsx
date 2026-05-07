@@ -124,10 +124,10 @@ export default function EditEventPage({
           </Button>
         </Link>
         <div>
-          <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">
+          <h1 className="text-2xl font-bold text-gray-900">
             Edit Event
           </h1>
-          <p className="text-sm text-zinc-500 dark:text-zinc-400">
+          <p className="text-sm text-gray-500">
             Perbarui detail event Anda
           </p>
         </div>
@@ -301,14 +301,14 @@ export default function EditEventPage({
             <label className="flex items-center gap-3">
               <input
                 type="checkbox"
-                className="h-4 w-4 rounded border-zinc-300"
+                className="h-4 w-4 rounded border-gray-300"
                 {...register("is_high_demand")}
               />
               <div>
-                <p className="text-sm font-medium text-zinc-900 dark:text-white">
+                <p className="text-sm font-medium text-gray-900">
                   High Demand Mode
                 </p>
-                <p className="text-xs text-zinc-500">
+                <p className="text-xs text-gray-500">
                   Aktifkan waiting room untuk event dengan permintaan tinggi
                 </p>
               </div>
@@ -316,14 +316,14 @@ export default function EditEventPage({
             <label className="flex items-center gap-3">
               <input
                 type="checkbox"
-                className="h-4 w-4 rounded border-zinc-300"
+                className="h-4 w-4 rounded border-gray-300"
                 {...register("allow_attendance_list")}
               />
               <div>
-                <p className="text-sm font-medium text-zinc-900 dark:text-white">
+                <p className="text-sm font-medium text-gray-900">
                   Daftar Kehadiran
                 </p>
-                <p className="text-xs text-zinc-500">
+                <p className="text-xs text-gray-500">
                   Tampilkan daftar peserta yang hadir secara publik
                 </p>
               </div>

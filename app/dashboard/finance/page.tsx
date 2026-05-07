@@ -114,10 +114,10 @@ export default function FinancePage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">
+        <h1 className="text-2xl font-bold text-gray-900">
           Keuangan
         </h1>
-        <p className="text-sm text-zinc-500 dark:text-zinc-400">
+        <p className="text-sm text-gray-500">
           Kelola pendapatan dan penarikan dana
         </p>
       </div>
@@ -128,10 +128,10 @@ export default function FinancePage() {
           <Card>
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
-                <DollarSign className="h-5 w-5 text-zinc-500" />
+                <DollarSign className="h-5 w-5 text-gray-500" />
                 <div>
-                  <p className="text-xs text-zinc-500">Total Penjualan</p>
-                  <p className="text-lg font-bold text-zinc-900 dark:text-white">
+                  <p className="text-xs text-gray-500">Total Penjualan</p>
+                  <p className="text-lg font-bold text-gray-900">
                     {formatCurrency(balance.gross_sales)}
                   </p>
                 </div>
@@ -143,7 +143,7 @@ export default function FinancePage() {
               <div className="flex items-center gap-3">
                 <ArrowDownToLine className="h-5 w-5 text-green-500" />
                 <div>
-                  <p className="text-xs text-zinc-500">Saldo Tersedia</p>
+                  <p className="text-xs text-gray-500">Saldo Tersedia</p>
                   <p className="text-lg font-bold text-green-600">
                     {formatCurrency(balance.available_balance)}
                   </p>
@@ -156,8 +156,8 @@ export default function FinancePage() {
               <div className="flex items-center gap-3">
                 <Clock className="h-5 w-5 text-yellow-500" />
                 <div>
-                  <p className="text-xs text-zinc-500">Pending</p>
-                  <p className="text-lg font-bold text-zinc-900 dark:text-white">
+                  <p className="text-xs text-gray-500">Pending</p>
+                  <p className="text-lg font-bold text-gray-900">
                     {formatCurrency(balance.pending_withdrawal)}
                   </p>
                 </div>
@@ -169,8 +169,8 @@ export default function FinancePage() {
               <div className="flex items-center gap-3">
                 <CheckCircle className="h-5 w-5 text-blue-500" />
                 <div>
-                  <p className="text-xs text-zinc-500">Total Ditarik</p>
-                  <p className="text-lg font-bold text-zinc-900 dark:text-white">
+                  <p className="text-xs text-gray-500">Total Ditarik</p>
+                  <p className="text-lg font-bold text-gray-900">
                     {formatCurrency(balance.total_withdrawn)}
                   </p>
                 </div>
@@ -202,7 +202,7 @@ export default function FinancePage() {
             </Button>
           </div>
           {balance && (
-            <p className="mt-2 text-xs text-zinc-400">
+            <p className="mt-2 text-xs text-gray-400">
               Saldo tersedia: {formatCurrency(balance.available_balance)}
             </p>
           )}
@@ -225,7 +225,7 @@ export default function FinancePage() {
                   <Tooltip
                     formatter={(value) => formatCurrency(Number(value))}
                   />
-                  <Bar dataKey="amount" fill="#18181b" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="amount" fill="#4f46e5" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>

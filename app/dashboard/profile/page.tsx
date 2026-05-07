@@ -133,10 +133,10 @@ export default function OrganizerProfilePage() {
   return (
     <div className="mx-auto max-w-2xl space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">
+        <h1 className="text-2xl font-bold text-gray-900">
           Profil Organizer
         </h1>
-        <p className="text-sm text-zinc-500 dark:text-zinc-400">
+        <p className="text-sm text-gray-500">
           Kelola profil dan verifikasi KYC
         </p>
       </div>
@@ -144,7 +144,7 @@ export default function OrganizerProfilePage() {
       {/* KYC Status */}
       {profile && (
         <div className="flex items-center gap-3">
-          <span className="text-sm text-zinc-600 dark:text-zinc-400">
+          <span className="text-sm text-gray-600">
             Status KYC:
           </span>
           <Badge variant={kycStatusConfig[profile.kyc_status].variant}>
@@ -213,7 +213,7 @@ export default function OrganizerProfilePage() {
             <CardTitle>Verifikasi KYC</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <p className="text-sm text-zinc-500">
+            <p className="text-sm text-gray-500">
               Upload dokumen untuk verifikasi identitas. Diperlukan untuk
               menerima pembayaran.
             </p>

@@ -93,10 +93,10 @@ export default function StaffPage({
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">
+          <h1 className="text-2xl font-bold text-gray-900">
             Staff Event
           </h1>
-          <p className="text-sm text-zinc-500 dark:text-zinc-400">
+          <p className="text-sm text-gray-500">
             Kelola tim yang membantu event Anda
           </p>
         </div>
@@ -109,8 +109,8 @@ export default function StaffPage({
       {staff.length === 0 ? (
         <Card>
           <CardContent className="flex flex-col items-center gap-4 py-12">
-            <UserPlus className="h-12 w-12 text-zinc-300 dark:text-zinc-600" />
-            <p className="text-sm text-zinc-500">Belum ada staff</p>
+            <UserPlus className="h-12 w-12 text-gray-300" />
+            <p className="text-sm text-gray-500">Belum ada staff</p>
             <Button variant="secondary" onClick={() => setIsModalOpen(true)}>
               Undang Staff Pertama
             </Button>
@@ -122,14 +122,14 @@ export default function StaffPage({
             <Card key={s.id}>
               <CardContent className="flex items-center justify-between p-4">
                 <div className="flex items-center gap-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-zinc-100 text-sm font-bold text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-sm font-bold text-gray-600">
                     {s.user.full_name.charAt(0).toUpperCase()}
                   </div>
                   <div>
-                    <p className="font-medium text-zinc-900 dark:text-white">
+                    <p className="font-medium text-gray-900">
                       {s.user.full_name}
                     </p>
-                    <p className="text-sm text-zinc-500">{s.user.email}</p>
+                    <p className="text-sm text-gray-500">{s.user.email}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
@@ -189,7 +189,7 @@ export default function StaffPage({
 
           {role === STAFF_ROLES.CO_ORGANIZER && (
             <div>
-              <p className="mb-2 text-sm font-medium text-zinc-700 dark:text-zinc-300">
+              <p className="mb-2 text-sm font-medium text-gray-700">
                 Permissions
               </p>
               <div className="space-y-2">
@@ -197,11 +197,11 @@ export default function StaffPage({
                   <label key={key} className="flex items-center gap-2">
                     <input
                       type="checkbox"
-                      className="h-4 w-4 rounded border-zinc-300"
+                      className="h-4 w-4 rounded border-gray-300"
                       checked={permissions.includes(value)}
                       onChange={() => togglePermission(value)}
                     />
-                    <span className="text-sm text-zinc-700 dark:text-zinc-300">
+                    <span className="text-sm text-gray-700">
                       {key.replace(/_/g, " ")}
                     </span>
                   </label>

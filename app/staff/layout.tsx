@@ -20,7 +20,7 @@ export default function StaffLayout({ children }: { children: ReactNode }) {
   if (isLoading || !isLoggedIn || !isStaff) {
     return (
       <div className="flex min-h-screen items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-zinc-300 border-t-zinc-900" />
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-300 border-t-indigo-600" />
       </div>
     );
   }
@@ -31,24 +31,24 @@ export default function StaffLayout({ children }: { children: ReactNode }) {
   };
 
   return (
-    <div className="flex min-h-screen flex-col bg-zinc-50 dark:bg-zinc-900">
-      <header className="sticky top-0 z-40 border-b border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
+    <div className="flex min-h-screen flex-col bg-gray-50">
+      <header className="sticky top-0 z-40 border-b border-gray-200 bg-white">
         <div className="flex h-14 items-center justify-between px-4">
           <Link
             href="/staff"
-            className="flex items-center gap-2 font-bold text-zinc-900 dark:text-white"
+            className="flex items-center gap-2 font-bold text-gray-900"
           >
             <LayoutDashboard className="h-5 w-5" />
             Staff Dashboard
           </Link>
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400">
+            <div className="flex items-center gap-2 text-sm text-gray-500">
               <User className="h-4 w-4" />
               <span className="hidden sm:inline">{user?.full_name?.split(" ")[0]}</span>
             </div>
             <button
               onClick={handleLogout}
-              className="flex items-center gap-1 rounded-md px-2 py-1 text-sm text-red-500 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-900/20"
+              className="flex items-center gap-1 rounded-md px-2 py-1 text-sm text-red-500 hover:bg-red-50 hover:text-red-600"
             >
               <LogOut className="h-4 w-4" />
               <span className="hidden sm:inline">Keluar</span>

@@ -109,7 +109,7 @@ function ResetPasswordContent() {
           </Button>
           <Link
             href="/login"
-            className="text-center text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-300"
+            className="text-center text-sm text-gray-500 hover:text-gray-900"
           >
             Kembali ke login
           </Link>
@@ -125,7 +125,7 @@ export default function ResetPasswordPage() {
       fallback={
         <Card>
           <CardContent className="flex justify-center py-8">
-            <div className="h-8 w-8 animate-spin rounded-full border-4 border-zinc-200 border-t-zinc-900" />
+            <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-200 border-t-indigo-600" />
           </CardContent>
         </Card>
       }

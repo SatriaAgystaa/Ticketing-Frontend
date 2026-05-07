@@ -124,19 +124,19 @@ export default function CheckoutPage() {
   if (!event) {
     return (
       <div className="flex min-h-[50vh] items-center justify-center">
-        <p className="text-zinc-500">Event tidak ditemukan</p>
+        <p className="text-gray-500">Event tidak ditemukan</p>
       </div>
     );
   }
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-8">
-      <h1 className="mb-1 text-2xl font-bold text-zinc-900 dark:text-white">Checkout</h1>
-      <p className="mb-6 text-zinc-500 dark:text-zinc-400">{event.title}</p>
+      <h1 className="mb-1 text-2xl font-bold text-gray-900">Checkout</h1>
+      <p className="mb-6 text-gray-500">{event.title}</p>
 
       {/* Ticket Selection */}
       <section className="mb-6">
-        <h2 className="mb-3 text-lg font-semibold text-zinc-900 dark:text-white">Pilih Tiket</h2>
+        <h2 className="mb-3 text-lg font-semibold text-gray-900">Pilih Tiket</h2>
         <div className="space-y-3">
           {event.ticket_types
             .filter((tt) => tt.is_visible)
@@ -156,7 +156,7 @@ export default function CheckoutPage() {
       {/* Custom Form Fields */}
       {event.custom_form_fields.length > 0 && (
         <section className="mb-6">
-          <h2 className="mb-3 text-lg font-semibold text-zinc-900 dark:text-white">
+          <h2 className="mb-3 text-lg font-semibold text-gray-900">
             Informasi Tambahan
           </h2>
           <DynamicForm
@@ -171,7 +171,7 @@ export default function CheckoutPage() {
 
       {/* Promo Code */}
       <section className="mb-6">
-        <h2 className="mb-3 text-lg font-semibold text-zinc-900 dark:text-white">Kode Promo</h2>
+        <h2 className="mb-3 text-lg font-semibold text-gray-900">Kode Promo</h2>
         <div className="flex gap-2">
           <Input
             placeholder="Masukkan kode promo"

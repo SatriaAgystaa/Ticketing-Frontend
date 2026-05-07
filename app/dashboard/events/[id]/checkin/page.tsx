@@ -23,10 +23,10 @@ export default function CheckinDashboardPage({
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">
+          <h1 className="text-2xl font-bold text-gray-900">
             Live Check-in
           </h1>
-          <p className="text-sm text-zinc-500 dark:text-zinc-400">
+          <p className="text-sm text-gray-500">
             Pantau check-in secara real-time
           </p>
         </div>
@@ -44,7 +44,7 @@ export default function CheckinDashboardPage({
       </div>
 
       {isError && (
-        <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-600 dark:border-red-800 dark:bg-red-950 dark:text-red-400">
+        <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-600">
           Gagal terhubung ke stream check-in. Cek koneksi internet Anda.
         </div>
       )}
@@ -61,7 +61,7 @@ export default function CheckinDashboardPage({
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="6"
-                className="text-zinc-200 dark:text-zinc-800"
+                className="text-gray-200"
               />
               <circle
                 cx="50"
@@ -77,7 +77,7 @@ export default function CheckinDashboardPage({
               />
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <span className="text-3xl font-bold text-zinc-900 dark:text-white">
+              <span className="text-3xl font-bold text-gray-900">
                 {percentage}%
               </span>
             </div>
@@ -85,14 +85,14 @@ export default function CheckinDashboardPage({
           <div className="flex items-center gap-6 text-center">
             <div>
               <p className="text-3xl font-bold text-green-600">{checkedIn}</p>
-              <p className="text-sm text-zinc-500">Check-in</p>
+              <p className="text-sm text-gray-500">Check-in</p>
             </div>
-            <div className="h-10 w-px bg-zinc-200 dark:bg-zinc-800" />
+            <div className="h-10 w-px bg-gray-200" />
             <div>
-              <p className="text-3xl font-bold text-zinc-900 dark:text-white">
+              <p className="text-3xl font-bold text-gray-900">
                 {totalTickets}
               </p>
-              <p className="text-sm text-zinc-500">Total Tiket</p>
+              <p className="text-sm text-gray-500">Total Tiket</p>
             </div>
           </div>
         </CardContent>
@@ -109,18 +109,18 @@ export default function CheckinDashboardPage({
           </CardHeader>
           <CardContent>
             <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-900">
-                <CheckCircle className="h-6 w-6 text-green-600 dark:text-green-400" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
+                <CheckCircle className="h-6 w-6 text-green-600" />
               </div>
               <div>
-                <p className="font-semibold text-zinc-900 dark:text-white">
+                <p className="font-semibold text-gray-900">
                   {checkinData.last_checkin.holder_name}
                 </p>
-                <p className="text-sm text-zinc-500">
+                <p className="text-sm text-gray-500">
                   {checkinData.last_checkin.ticket_type} &middot;{" "}
                   {checkinData.last_checkin.ticket_code}
                 </p>
-                <p className="text-xs text-zinc-400">
+                <p className="text-xs text-gray-400">
                   {formatDateTime(checkinData.last_checkin.checked_in_at)}
                 </p>
               </div>

@@ -124,8 +124,8 @@ export default function AcceptInvitePage({
     return (
       <Card>
         <CardContent className="flex flex-col items-center gap-4 py-12">
-          <div className="h-8 w-8 animate-spin rounded-full border-4 border-zinc-200 border-t-zinc-900" />
-          <p className="text-sm text-zinc-500">Memuat undangan...</p>
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-200 border-t-indigo-600" />
+          <p className="text-sm text-gray-500">Memuat undangan...</p>
         </CardContent>
       </Card>
     );
@@ -137,8 +137,8 @@ export default function AcceptInvitePage({
         <CardContent className="flex flex-col items-center gap-4 py-12 text-center">
           <ShieldCheck className="h-12 w-12 text-red-400" />
           <div>
-            <p className="font-semibold text-zinc-900 dark:text-white">Undangan Tidak Valid</p>
-            <p className="mt-1 text-sm text-zinc-500">{error ?? "Undangan tidak ditemukan"}</p>
+            <p className="font-semibold text-gray-900">Undangan Tidak Valid</p>
+            <p className="mt-1 text-sm text-gray-500">{error ?? "Undangan tidak ditemukan"}</p>
           </div>
           <Button variant="secondary" onClick={() => router.push("/")}>
             Kembali ke Beranda
@@ -159,11 +159,11 @@ export default function AcceptInvitePage({
 
       <CardContent className="space-y-6">
         {/* Info Event */}
-        <div className="rounded-lg border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-700 dark:bg-zinc-800/50">
+        <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
           <div className="flex items-start justify-between gap-3">
             <div className="space-y-1">
-              <p className="font-semibold text-zinc-900 dark:text-white">{invitation.event.title}</p>
-              <div className="flex items-center gap-1 text-xs text-zinc-500">
+              <p className="font-semibold text-gray-900">{invitation.event.title}</p>
+              <div className="flex items-center gap-1 text-xs text-gray-500">
                 <CalendarDays className="h-3 w-3" />
                 {new Date(invitation.event.starts_at).toLocaleDateString("id-ID", {
                   day: "numeric",
@@ -180,7 +180,7 @@ export default function AcceptInvitePage({
               {invitation.permissions.map((p) => (
                 <span
                   key={p}
-                  className="rounded bg-zinc-200 px-2 py-0.5 text-xs text-zinc-600 dark:bg-zinc-700 dark:text-zinc-300"
+                  className="rounded bg-gray-200 px-2 py-0.5 text-xs text-gray-600"
                 >
                   {p.replace(/_/g, " ")}
                 </span>
@@ -190,7 +190,7 @@ export default function AcceptInvitePage({
         </div>
 
         {/* Info email */}
-        <div className="rounded-md bg-blue-50 px-4 py-3 text-sm text-blue-700 dark:bg-blue-900/20 dark:text-blue-300">
+        <div className="rounded-md bg-indigo-50 px-4 py-3 text-sm text-indigo-700">
           Undangan dikirim ke <strong>{invitation.email}</strong>.{" "}
           {isNewUser
             ? "Karena kamu belum punya akun, isi nama dan password untuk mendaftar sekalian."
@@ -228,7 +228,7 @@ export default function AcceptInvitePage({
         >
           {isNewUser ? "Daftar & Terima Undangan" : "Konfirmasi & Terima Undangan"}
         </Button>
-        <p className="text-center text-xs text-zinc-400">
+        <p className="text-center text-xs text-gray-400">
           Undangan kedaluwarsa:{" "}
           {new Date(invitation.expires_at).toLocaleDateString("id-ID", {
             day: "numeric",

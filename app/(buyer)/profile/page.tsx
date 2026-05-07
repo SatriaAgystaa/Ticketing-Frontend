@@ -47,7 +47,7 @@ export default function ProfilePage() {
 
   return (
     <div className="mx-auto max-w-lg px-4 py-8">
-      <h1 className="mb-6 text-2xl font-bold text-zinc-900 dark:text-white">Edit Profil</h1>
+      <h1 className="mb-6 text-2xl font-bold text-gray-900">Edit Profil</h1>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <Input

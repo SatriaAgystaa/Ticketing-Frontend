@@ -73,7 +73,7 @@ export default function RegisterOrganizerPage() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <CardContent className="space-y-4">
           {/* Divider: Akun */}
-          <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+          <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">
             Informasi Akun
           </p>
           <Input
@@ -119,7 +119,7 @@ export default function RegisterOrganizerPage() {
           </div>
 
           {/* Divider: Profil Organizer */}
-          <p className="pt-2 text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+          <p className="pt-2 text-xs font-semibold uppercase tracking-wider text-gray-400">
             Profil Organizer
           </p>
           <Input
@@ -132,7 +132,7 @@ export default function RegisterOrganizerPage() {
           <div>
             <label
               htmlFor="description"
-              className="mb-1.5 block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+              className="mb-1.5 block text-sm font-medium text-gray-700"
             >
               Deskripsi (opsional)
             </label>
@@ -140,7 +140,7 @@ export default function RegisterOrganizerPage() {
               id="description"
               placeholder="Ceritakan tentang organisasi atau brand kamu..."
               rows={3}
-              className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white dark:placeholder-zinc-500"
+              className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
               {...register("description")}
             />
             {errors.description && (
@@ -170,17 +170,17 @@ export default function RegisterOrganizerPage() {
           <Button type="submit" className="w-full" isLoading={isSubmitting}>
             Daftar sebagai Organizer
           </Button>
-          <p className="text-center text-sm text-zinc-500">
+          <p className="text-center text-sm text-gray-500">
             Sudah punya akun?{" "}
-            <Link href="/login" className="font-medium text-zinc-900 hover:underline dark:text-white">
+            <Link href="/login" className="font-medium text-indigo-600 hover:underline">
               Masuk
             </Link>
           </p>
-          <p className="text-center text-sm text-zinc-500">
+          <p className="text-center text-sm text-gray-500">
             Mau daftar sebagai pembeli?{" "}
             <Link
               href="/register"
-              className="font-medium text-zinc-900 hover:underline dark:text-white"
+              className="font-medium text-indigo-600 hover:underline"
             >
               Daftar di sini
             </Link>

@@ -78,9 +78,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const logout = async () => {
     try {
       await authApi.logout();
+    } catch {
+      // ignore logout API errors — clear session regardless
     } finally {
       clearTokens();
       setUser(null);
+      setStaffEvents([]);
     }
   };
 

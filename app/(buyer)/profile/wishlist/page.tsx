@@ -19,7 +19,7 @@ export default function WishlistPage() {
   if (isLoading) {
     return (
       <div className="mx-auto max-w-5xl px-4 py-8">
-        <h1 className="mb-6 text-2xl font-bold text-zinc-900 dark:text-white">Wishlist</h1>
+        <h1 className="mb-6 text-2xl font-bold text-gray-900">Wishlist</h1>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {Array.from({ length: 6 }).map((_, i) => (
             <Skeleton key={i} className="h-64 rounded-xl" />
@@ -31,7 +31,7 @@ export default function WishlistPage() {
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-8">
-      <h1 className="mb-6 text-2xl font-bold text-zinc-900 dark:text-white">Wishlist</h1>
+      <h1 className="mb-6 text-2xl font-bold text-gray-900">Wishlist</h1>
 
       {!events || events.length === 0 ? (
         <EmptyState

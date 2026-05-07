@@ -19,7 +19,7 @@ export function AttendanceList({ attendees, totalCount }: AttendanceListProps) {
         {attendees.slice(0, displayCount).map((attendee, i) => (
           <div
             key={i}
-            className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-white bg-zinc-200 text-xs font-medium text-zinc-600 dark:border-zinc-950 dark:bg-zinc-700 dark:text-zinc-300"
+            className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-white bg-gray-200 text-xs font-medium text-gray-600"
           >
             {attendee.avatar_url ? (
               <img
@@ -33,7 +33,7 @@ export function AttendanceList({ attendees, totalCount }: AttendanceListProps) {
           </div>
         ))}
       </div>
-      <div className="flex items-center gap-1 text-sm text-zinc-500 dark:text-zinc-400">
+      <div className="flex items-center gap-1 text-sm text-gray-500">
         <Users className="h-4 w-4" />
         <span>
           {totalCount} orang {remaining > 0 ? "akan hadir" : "hadir"}

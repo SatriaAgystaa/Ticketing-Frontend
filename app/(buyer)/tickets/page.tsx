@@ -25,7 +25,7 @@ export default function MyTicketsPage() {
   if (isLoading) {
     return (
       <div className="mx-auto max-w-5xl px-4 py-8">
-        <h1 className="mb-6 text-2xl font-bold text-zinc-900 dark:text-white">Tiket Saya</h1>
+        <h1 className="mb-6 text-2xl font-bold text-gray-900">Tiket Saya</h1>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {Array.from({ length: 6 }).map((_, i) => (
             <Skeleton key={i} className="h-48 rounded-xl" />
@@ -37,7 +37,7 @@ export default function MyTicketsPage() {
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-8">
-      <h1 className="mb-6 text-2xl font-bold text-zinc-900 dark:text-white">Tiket Saya</h1>
+      <h1 className="mb-6 text-2xl font-bold text-gray-900">Tiket Saya</h1>
 
       {!tickets || tickets.length === 0 ? (
         <EmptyState
@@ -50,33 +50,33 @@ export default function MyTicketsPage() {
             <Link
               key={ticket.id}
               href={`/tickets/${ticket.ticket_code}`}
-              className="rounded-xl border border-zinc-200 p-4 transition-shadow hover:shadow-md dark:border-zinc-800"
+              className="rounded-xl border border-gray-200 p-4 transition-shadow hover:shadow-md"
             >
               <div className="flex items-start justify-between">
-                <p className="font-semibold text-zinc-900 dark:text-white">
+                <p className="font-semibold text-gray-900">
                   {ticket.event.title}
                 </p>
                 <Badge variant={STATUS_VARIANT[ticket.status] ?? "default"}>
                   {ticket.status}
                 </Badge>
               </div>
-              <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+              <p className="mt-1 text-sm text-gray-500">
                 {ticket.ticket_type_name}
               </p>
-              <p className="mt-0.5 text-sm text-zinc-500 dark:text-zinc-400">
+              <p className="mt-0.5 text-sm text-gray-500">
                 {ticket.holder_name}
               </p>
-              <div className="mt-3 border-t border-zinc-100 pt-3 dark:border-zinc-800">
-                <p className="text-xs text-zinc-400 dark:text-zinc-500">
+              <div className="mt-3 border-t border-gray-100 pt-3">
+                <p className="text-xs text-gray-400">
                   {formatDate(ticket.event.starts_at)}
                 </p>
                 {ticket.event.venue_name && (
-                  <p className="mt-0.5 text-xs text-zinc-400 dark:text-zinc-500">
+                  <p className="mt-0.5 text-xs text-gray-400">
                     {ticket.event.venue_name}
                   </p>
                 )}
               </div>
-              <p className="mt-2 font-mono text-xs text-zinc-400">{ticket.ticket_code}</p>
+              <p className="mt-2 font-mono text-xs text-gray-400">{ticket.ticket_code}</p>
             </Link>
           ))}
         </div>

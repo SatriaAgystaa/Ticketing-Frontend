@@ -100,10 +100,10 @@ export default function PromosPage({
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">
+          <h1 className="text-2xl font-bold text-gray-900">
             Kode Promo
           </h1>
-          <p className="text-sm text-zinc-500 dark:text-zinc-400">
+          <p className="text-sm text-gray-500">
             Kelola kode promo untuk event ini
           </p>
         </div>
@@ -125,12 +125,12 @@ export default function PromosPage({
             header: "Kode",
             render: (p: PromoCode) => (
               <div className="flex items-center gap-2">
-                <code className="rounded bg-zinc-100 px-2 py-0.5 text-sm font-mono dark:bg-zinc-800">
+                <code className="rounded bg-gray-100 px-2 py-0.5 text-sm font-mono">
                   {p.code}
                 </code>
                 <button
                   onClick={() => copyCode(p.code)}
-                  className="text-zinc-400 hover:text-zinc-600"
+                  className="text-gray-400 hover:text-gray-600"
                 >
                   <Copy className="h-3.5 w-3.5" />
                 </button>
@@ -247,10 +247,10 @@ export default function PromosPage({
           <label className="flex items-center gap-2">
             <input
               type="checkbox"
-              className="h-4 w-4 rounded border-zinc-300"
+              className="h-4 w-4 rounded border-gray-300"
               {...register("is_active")}
             />
-            <span className="text-sm text-zinc-700 dark:text-zinc-300">
+            <span className="text-sm text-gray-700">
               Aktifkan sekarang
             </span>
           </label>

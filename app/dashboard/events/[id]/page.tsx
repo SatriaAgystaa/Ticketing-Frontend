@@ -102,12 +102,12 @@ export default function EventDetailPage({
         <div className="flex items-center gap-3">
           <div>
             <div className="flex items-center gap-2">
-              <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">
+              <h1 className="text-2xl font-bold text-gray-900">
                 {event.title}
               </h1>
               <EventStatusBadge status={event.status} />
             </div>
-            <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+            <p className="mt-1 text-sm text-gray-500">
               ID: {event.id}
             </p>
           </div>
@@ -127,8 +127,8 @@ export default function EventDetailPage({
 
       {/* Warning: belum ada tiket */}
       {!hasTickets && (
-        <div className="flex items-center justify-between rounded-lg border border-yellow-300 bg-yellow-50 px-4 py-3 dark:border-yellow-700 dark:bg-yellow-950">
-          <div className="flex items-center gap-2 text-sm text-yellow-800 dark:text-yellow-300">
+        <div className="flex items-center justify-between rounded-lg border border-yellow-300 bg-yellow-50 px-4 py-3">
+          <div className="flex items-center gap-2 text-sm text-yellow-800">
             <AlertTriangle className="h-4 w-4 shrink-0" />
             <span>Event belum punya tipe tiket. Pembeli tidak bisa checkout sampai tiket ditambahkan.</span>
           </div>
@@ -146,32 +146,32 @@ export default function EventDetailPage({
         <div className="grid gap-4 sm:grid-cols-4">
           <Card>
             <CardContent className="p-4 text-center">
-              <p className="text-sm text-zinc-500">Revenue</p>
-              <p className="text-lg font-bold text-zinc-900 dark:text-white">
+              <p className="text-sm text-gray-500">Revenue</p>
+              <p className="text-lg font-bold text-gray-900">
                 {formatCurrency(stats.total_revenue)}
               </p>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="p-4 text-center">
-              <p className="text-sm text-zinc-500">Pesanan</p>
-              <p className="text-lg font-bold text-zinc-900 dark:text-white">
+              <p className="text-sm text-gray-500">Pesanan</p>
+              <p className="text-lg font-bold text-gray-900">
                 {stats.total_orders}
               </p>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="p-4 text-center">
-              <p className="text-sm text-zinc-500">Tiket Terjual</p>
-              <p className="text-lg font-bold text-zinc-900 dark:text-white">
+              <p className="text-sm text-gray-500">Tiket Terjual</p>
+              <p className="text-lg font-bold text-gray-900">
                 {stats.total_tickets_sold}
               </p>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="p-4 text-center">
-              <p className="text-sm text-zinc-500">Check-in</p>
-              <p className="text-lg font-bold text-zinc-900 dark:text-white">
+              <p className="text-sm text-gray-500">Check-in</p>
+              <p className="text-lg font-bold text-gray-900">
                 {stats.total_checkins}
               </p>
             </CardContent>
@@ -185,8 +185,8 @@ export default function EventDetailPage({
           <Link key={link.href} href={`/dashboard/events/${id}/${link.href}`}>
             <Card className="transition-shadow hover:shadow-md">
               <CardContent className="flex flex-col items-center gap-2 p-4">
-                <link.icon className="h-5 w-5 text-zinc-500" />
-                <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                <link.icon className="h-5 w-5 text-gray-500" />
+                <span className="text-sm font-medium text-gray-700">
                   {link.label}
                 </span>
               </CardContent>
@@ -219,28 +219,28 @@ export default function EventDetailPage({
           </CardHeader>
           <CardContent className="space-y-3">
             <div className="flex items-start gap-2 text-sm">
-              <Calendar className="mt-0.5 h-4 w-4 shrink-0 text-zinc-400" />
+              <Calendar className="mt-0.5 h-4 w-4 shrink-0 text-gray-400" />
               <div>
-                <p className="font-medium text-zinc-900 dark:text-white">
+                <p className="font-medium text-gray-900">
                   {formatDate(event.starts_at)}
                 </p>
-                <p className="text-zinc-500">s/d {formatDate(event.ends_at)}</p>
+                <p className="text-gray-500">s/d {formatDate(event.ends_at)}</p>
               </div>
             </div>
 
             {(event.venue_name || event.venue_city) && (
               <div className="flex items-start gap-2 text-sm">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-zinc-400" />
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gray-400" />
                 <div>
                   {event.venue_name && (
-                    <p className="font-medium text-zinc-900 dark:text-white">
+                    <p className="font-medium text-gray-900">
                       {event.venue_name}
                     </p>
                   )}
                   {event.venue_address && (
-                    <p className="text-zinc-500">{event.venue_address}</p>
+                    <p className="text-gray-500">{event.venue_address}</p>
                   )}
-                  <p className="text-zinc-500">
+                  <p className="text-gray-500">
                     {[
                       event.venue_subdistrict,
                       event.venue_district,
@@ -266,7 +266,7 @@ export default function EventDetailPage({
 
             {event.online_url && (
               <div className="flex items-start gap-2 text-sm">
-                <Globe className="mt-0.5 h-4 w-4 shrink-0 text-zinc-400" />
+                <Globe className="mt-0.5 h-4 w-4 shrink-0 text-gray-400" />
                 <a
                   href={event.online_url}
                   target="_blank"
@@ -286,7 +286,7 @@ export default function EventDetailPage({
             <CardTitle>Deskripsi</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="whitespace-pre-wrap text-sm text-zinc-600 dark:text-zinc-400">
+            <p className="whitespace-pre-wrap text-sm text-gray-600">
               {event.description}
             </p>
           </CardContent>

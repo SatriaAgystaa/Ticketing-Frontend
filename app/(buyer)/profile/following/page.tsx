@@ -33,7 +33,7 @@ export default function FollowingPage() {
   if (isLoading) {
     return (
       <div className="mx-auto max-w-3xl px-4 py-8">
-        <h1 className="mb-6 text-2xl font-bold text-zinc-900 dark:text-white">Organizer yang Diikuti</h1>
+        <h1 className="mb-6 text-2xl font-bold text-gray-900">Organizer yang Diikuti</h1>
         <div className="space-y-4">
           {Array.from({ length: 3 }).map((_, i) => (
             <Skeleton key={i} className="h-20 w-full rounded-xl" />
@@ -45,7 +45,7 @@ export default function FollowingPage() {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
-      <h1 className="mb-6 text-2xl font-bold text-zinc-900 dark:text-white">
+      <h1 className="mb-6 text-2xl font-bold text-gray-900">
         Organizer yang Diikuti
       </h1>
 
@@ -59,24 +59,24 @@ export default function FollowingPage() {
           {organizers.map((org) => (
             <div
               key={org.id}
-              className="flex items-center justify-between rounded-xl border border-zinc-200 p-4 dark:border-zinc-800"
+              className="flex items-center justify-between rounded-xl border border-gray-200 p-4"
             >
               <Link href={`/organizers/${org.id}`} className="flex items-center gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100">
                   {org.logo_url ? (
                     <img src={org.logo_url} alt={org.brand_name} className="h-12 w-12 rounded-full object-cover" />
                   ) : (
-                    <span className="text-lg font-bold text-zinc-400">
+                    <span className="text-lg font-bold text-gray-400">
                       {org.brand_name.charAt(0)}
                     </span>
                   )}
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <p className="font-semibold text-zinc-900 dark:text-white">{org.brand_name}</p>
+                    <p className="font-semibold text-gray-900">{org.brand_name}</p>
                     {org.is_verified && <OrganizerBadge brandName={org.brand_name} isVerified={org.is_verified} />}
                   </div>
-                  <p className="text-sm text-zinc-500 dark:text-zinc-400">
+                  <p className="text-sm text-gray-500">
                     {org.follower_count} pengikut &middot; {org.event_count} event
                   </p>
                 </div>

@@ -54,7 +54,7 @@ export default function OrderDetailPage() {
   if (!order) {
     return (
       <div className="flex min-h-[50vh] items-center justify-center">
-        <p className="text-zinc-500">Pesanan tidak ditemukan</p>
+        <p className="text-gray-500">Pesanan tidak ditemukan</p>
       </div>
     );
   }
@@ -63,17 +63,17 @@ export default function OrderDetailPage() {
     <div className="mx-auto max-w-2xl px-4 py-8">
       <button
         onClick={() => router.push("/orders")}
-        className="mb-4 text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-white"
+        className="mb-4 text-sm text-gray-500 hover:text-gray-900"
       >
         &larr; Kembali ke Pesanan
       </button>
 
       <div className="mb-6 flex items-start justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">
+          <h1 className="text-2xl font-bold text-gray-900">
             {order.order_number}
           </h1>
-          <p className="mt-1 text-zinc-500 dark:text-zinc-400">{order.event.title}</p>
+          <p className="mt-1 text-gray-500">{order.event.title}</p>
         </div>
         <Badge variant={STATUS_VARIANT[order.status] ?? "default"}>
           {order.status}
@@ -81,51 +81,51 @@ export default function OrderDetailPage() {
       </div>
 
       {/* Event Info */}
-      <div className="mb-6 rounded-xl border border-zinc-200 p-4 dark:border-zinc-800">
-        <p className="text-sm text-zinc-500 dark:text-zinc-400">
+      <div className="mb-6 rounded-xl border border-gray-200 p-4">
+        <p className="text-sm text-gray-500">
           {formatDate(order.event.starts_at)}
         </p>
         {order.event.venue_name && (
-          <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+          <p className="mt-1 text-sm text-gray-500">
             {order.event.venue_name}
           </p>
         )}
       </div>
 
       {/* Order Items */}
-      <div className="mb-6 rounded-xl border border-zinc-200 dark:border-zinc-800">
-        <div className="border-b border-zinc-200 px-4 py-3 dark:border-zinc-800">
-          <h2 className="font-semibold text-zinc-900 dark:text-white">Item Pesanan</h2>
+      <div className="mb-6 rounded-xl border border-gray-200">
+        <div className="border-b border-gray-200 px-4 py-3">
+          <h2 className="font-semibold text-gray-900">Item Pesanan</h2>
         </div>
-        <div className="divide-y divide-zinc-200 dark:divide-zinc-800">
+        <div className="divide-y divide-gray-200">
           {order.items.map((item) => (
             <div key={item.id} className="flex items-center justify-between px-4 py-3">
               <div>
-                <p className="font-medium text-zinc-900 dark:text-white">
+                <p className="font-medium text-gray-900">
                   {item.ticket_type_name_snapshot}
                 </p>
-                <p className="text-sm text-zinc-500 dark:text-zinc-400">
+                <p className="text-sm text-gray-500">
                   {item.quantity}x {formatCurrency(item.price_snapshot)}
                 </p>
               </div>
-              <p className="font-medium text-zinc-900 dark:text-white">
+              <p className="font-medium text-gray-900">
                 {formatCurrency(item.subtotal)}
               </p>
             </div>
           ))}
         </div>
 
-        <div className="border-t border-zinc-200 px-4 py-3 dark:border-zinc-800">
-          <div className="flex justify-between text-sm text-zinc-500 dark:text-zinc-400">
+        <div className="border-t border-gray-200 px-4 py-3">
+          <div className="flex justify-between text-sm text-gray-500">
             <span>Subtotal</span>
             <span>{formatCurrency(order.subtotal)}</span>
           </div>
-          <div className="mt-1 flex justify-between text-sm text-zinc-500 dark:text-zinc-400">
+          <div className="mt-1 flex justify-between text-sm text-gray-500">
             <span>Biaya layanan</span>
             <span>{formatCurrency(order.platform_fee)}</span>
           </div>
           {order.payment_fee > 0 && (
-            <div className="mt-1 flex justify-between text-sm text-zinc-500 dark:text-zinc-400">
+            <div className="mt-1 flex justify-between text-sm text-gray-500">
               <span>Biaya pembayaran</span>
               <span>{formatCurrency(order.payment_fee)}</span>
             </div>
@@ -136,7 +136,7 @@ export default function OrderDetailPage() {
               <span>-{formatCurrency(order.discount_amount)}</span>
             </div>
           )}
-          <div className="mt-2 flex justify-between border-t border-zinc-200 pt-2 font-semibold text-zinc-900 dark:border-zinc-800 dark:text-white">
+          <div className="mt-2 flex justify-between border-t border-gray-200 pt-2 font-semibold text-gray-900">
             <span>Total</span>
             <span>{formatCurrency(order.total_amount)}</span>
           </div>
@@ -155,7 +155,7 @@ export default function OrderDetailPage() {
         )}
       </div>
 
-      <p className="mt-6 text-xs text-zinc-400 dark:text-zinc-500">
+      <p className="mt-6 text-xs text-gray-400">
         Dibuat pada {formatDate(order.created_at)}
       </p>
     </div>

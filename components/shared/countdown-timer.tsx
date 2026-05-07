@@ -33,7 +33,7 @@ export function CountdownTimer({
     <div
       className={cn(
         "flex items-center gap-1.5 text-sm font-medium",
-        variant === "danger" ? "text-red-600" : "text-zinc-700 dark:text-zinc-300",
+        variant === "danger" ? "text-red-600" : "text-gray-700",
         className,
       )}
     >

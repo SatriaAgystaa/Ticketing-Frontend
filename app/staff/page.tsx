@@ -23,10 +23,10 @@ export default function StaffPage() {
   return (
     <div className="mx-auto w-full max-w-2xl space-y-6">
       <div>
-        <h1 className="text-xl font-bold text-zinc-900 dark:text-white">
+        <h1 className="text-xl font-bold text-gray-900">
           Halo, {user?.full_name?.split(" ")[0]}!
         </h1>
-        <p className="text-sm text-zinc-500 dark:text-zinc-400">
+        <p className="text-sm text-gray-500">
           Kelola event yang kamu bantu sebagai Co-Organizer.
         </p>
       </div>
@@ -34,26 +34,26 @@ export default function StaffPage() {
       {/* Pending invitations */}
       {pendingEvents.length > 0 && (
         <div className="space-y-3">
-          <h2 className="text-sm font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wide">
+          <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
             Undangan Menunggu ({pendingEvents.length})
           </h2>
           {pendingEvents.map((staffEvent) => (
             <div
               key={staffEvent.event_id}
-              className="flex items-center justify-between gap-4 rounded-xl border border-yellow-200 bg-yellow-50 p-4 dark:border-yellow-800 dark:bg-yellow-900/10"
+              className="flex items-center justify-between gap-4 rounded-xl border border-yellow-200 bg-yellow-50 p-4"
             >
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
-                  <Mail className="h-4 w-4 flex-shrink-0 text-yellow-600 dark:text-yellow-400" />
-                  <p className="truncate font-semibold text-zinc-900 dark:text-white">
+                  <Mail className="h-4 w-4 flex-shrink-0 text-yellow-600" />
+                  <p className="truncate font-semibold text-gray-900">
                     {staffEvent.event.title}
                   </p>
                 </div>
-                <div className="mt-1 flex items-center gap-1 text-xs text-zinc-500 pl-6">
+                <div className="mt-1 flex items-center gap-1 text-xs text-gray-500 pl-6">
                   <CalendarDays className="h-3 w-3" />
                   {formatDate(staffEvent.event.starts_at)}
                 </div>
-                <div className="mt-1 flex items-center gap-1 pl-6 text-xs text-yellow-700 dark:text-yellow-400">
+                <div className="mt-1 flex items-center gap-1 pl-6 text-xs text-yellow-700">
                   <Clock className="h-3 w-3" />
                   Undangan belum diterima
                 </div>
@@ -65,7 +65,7 @@ export default function StaffPage() {
                   </Button>
                 </Link>
               ) : (
-                <span className="text-xs text-zinc-400">Cek email kamu</span>
+                <span className="text-xs text-gray-400">Cek email kamu</span>
               )}
             </div>
           ))}
@@ -75,37 +75,37 @@ export default function StaffPage() {
       {/* Active events */}
       <div className="space-y-3">
         {activeEvents.length > 0 && (
-          <h2 className="text-sm font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wide">
+          <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
             Event Aktif ({activeEvents.length})
           </h2>
         )}
 
         {activeEvents.length === 0 && pendingEvents.length === 0 && (
-          <div className="flex flex-col items-center gap-2 rounded-xl border border-dashed border-zinc-300 py-12 text-center dark:border-zinc-700">
-            <CalendarDays className="h-8 w-8 text-zinc-400" />
-            <p className="text-sm font-medium text-zinc-500">Belum ada event yang kamu kelola</p>
-            <p className="text-xs text-zinc-400">Tunggu undangan dari organizer</p>
+          <div className="flex flex-col items-center gap-2 rounded-xl border border-dashed border-gray-300 py-12 text-center">
+            <CalendarDays className="h-8 w-8 text-gray-400" />
+            <p className="text-sm font-medium text-gray-500">Belum ada event yang kamu kelola</p>
+            <p className="text-xs text-gray-400">Tunggu undangan dari organizer</p>
           </div>
         )}
 
         {activeEvents.map((staffEvent) => (
           <div
             key={staffEvent.event_id}
-            className="rounded-xl border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-950"
+            className="rounded-xl border border-gray-200 bg-white p-4"
           >
             <div className="mb-3 flex items-start justify-between gap-2">
               <div>
-                <p className="font-semibold text-zinc-900 dark:text-white">
+                <p className="font-semibold text-gray-900">
                   {staffEvent.event.title}
                 </p>
-                <div className="mt-1 flex items-center gap-1 text-xs text-zinc-500">
+                <div className="mt-1 flex items-center gap-1 text-xs text-gray-500">
                   <CalendarDays className="h-3 w-3" />
                   {formatDate(staffEvent.event.starts_at)}
                 </div>
               </div>
               <Link
                 href={`/staff/events/${staffEvent.event_id}`}
-                className="flex items-center gap-1 text-xs text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200"
+                className="flex items-center gap-1 text-xs text-gray-400 hover:text-gray-700"
               >
                 Overview
                 <ChevronRight className="h-3 w-3" />
@@ -120,7 +120,7 @@ export default function StaffPage() {
                   <Link
                     key={perm}
                     href={link.href(staffEvent.event_id)}
-                    className="flex items-center gap-1.5 rounded-lg border border-zinc-200 bg-zinc-50 px-3 py-1.5 text-xs font-medium text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
+                    className="flex items-center gap-1.5 rounded-lg border border-gray-200 bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-100"
                   >
                     {link.icon}
                     {link.label}

@@ -34,10 +34,10 @@ export default function DashboardEventsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">
+          <h1 className="text-2xl font-bold text-gray-900">
             Event Saya
           </h1>
-          <p className="text-sm text-zinc-500 dark:text-zinc-400">
+          <p className="text-sm text-gray-500">
             Kelola semua event Anda
           </p>
         </div>
@@ -58,8 +58,8 @@ export default function DashboardEventsPage() {
       ) : events.length === 0 ? (
         <Card>
           <CardContent className="flex flex-col items-center gap-4 py-16">
-            <CalendarDays className="h-12 w-12 text-zinc-300 dark:text-zinc-600" />
-            <p className="text-zinc-500">Belum ada event</p>
+            <CalendarDays className="h-12 w-12 text-gray-300" />
+            <p className="text-gray-500">Belum ada event</p>
             <Link href="/dashboard/events/new">
               <Button>Buat Event Pertama</Button>
             </Link>
@@ -78,22 +78,22 @@ export default function DashboardEventsPage() {
                       className="h-16 w-24 rounded-lg object-cover"
                     />
                   ) : (
-                    <div className="flex h-16 w-24 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-800">
-                      <CalendarDays className="h-6 w-6 text-zinc-400" />
+                    <div className="flex h-16 w-24 items-center justify-center rounded-lg bg-gray-100">
+                      <CalendarDays className="h-6 w-6 text-gray-400" />
                     </div>
                   )}
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
-                      <h3 className="font-semibold text-zinc-900 dark:text-white">
+                      <h3 className="font-semibold text-gray-900">
                         {event.title}
                       </h3>
                       <EventStatusBadge status={event.status} />
                     </div>
-                    <p className="text-sm text-zinc-500">
+                    <p className="text-sm text-gray-500">
                       {formatDate(event.starts_at)}
                       {event.venue_city ? ` - ${event.venue_city}` : ""}
                     </p>
-                    <p className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                    <p className="text-sm font-medium text-gray-700">
                       {event.min_price === 0
                         ? "Gratis"
                         : `Mulai ${formatCurrency(event.min_price)}`}

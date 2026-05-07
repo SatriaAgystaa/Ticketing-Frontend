@@ -106,7 +106,7 @@ function VerifyEmailContent() {
           <CardDescription>Email tidak ditemukan</CardDescription>
         </CardHeader>
         <CardContent>
-          <p className="text-center text-sm text-zinc-500">
+          <p className="text-center text-sm text-gray-500">
             Silakan daftar ulang atau minta kirim ulang dari halaman login.
           </p>
         </CardContent>
@@ -123,7 +123,7 @@ function VerifyEmailContent() {
         <CardTitle>Verifikasi Email</CardTitle>
         <CardDescription>
           Masukkan kode 6 digit yang dikirim ke{" "}
-          <span className="font-medium text-zinc-900 dark:text-white">{email}</span>
+          <span className="font-medium text-gray-900">{email}</span>
         </CardDescription>
       </CardHeader>
       <form onSubmit={handleSubmit}>
@@ -140,12 +140,12 @@ function VerifyEmailContent() {
                 value={digit}
                 onChange={(e) => handleChange(i, e.target.value)}
                 onKeyDown={(e) => handleKeyDown(i, e)}
-                className="h-14 w-12 rounded-lg border border-zinc-200 bg-white text-center text-2xl font-bold text-zinc-900 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-zinc-950 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white dark:focus:ring-zinc-300"
+                className="h-14 w-12 rounded-lg border border-gray-200 bg-white text-center text-2xl font-bold text-gray-900 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
               />
             ))}
           </div>
 
-          <p className="text-center text-xs text-zinc-500 dark:text-zinc-400">
+          <p className="text-center text-xs text-gray-500">
             Kode berlaku selama 10 menit. Periksa folder spam jika tidak menemukan email.
           </p>
         </CardContent>
@@ -162,7 +162,7 @@ function VerifyEmailContent() {
             type="button"
             onClick={handleResend}
             disabled={isResending || resendCooldown > 0}
-            className="text-sm text-zinc-500 hover:text-zinc-900 disabled:cursor-not-allowed disabled:opacity-50 dark:hover:text-white"
+            className="text-sm text-gray-500 hover:text-gray-900 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {resendCooldown > 0
               ? `Kirim ulang dalam ${resendCooldown}s`
@@ -172,7 +172,7 @@ function VerifyEmailContent() {
           </button>
           <Link
             href="/login"
-            className="text-sm text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300"
+            className="text-sm text-gray-400 hover:text-gray-600"
           >
             Sudah punya akun? Login
           </Link>
@@ -188,7 +188,7 @@ export default function VerifyEmailPage() {
       fallback={
         <Card>
           <CardContent className="flex justify-center py-8">
-            <div className="h-8 w-8 animate-spin rounded-full border-4 border-zinc-200 border-t-zinc-900" />
+            <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-200 border-t-indigo-600" />
           </CardContent>
         </Card>
       }

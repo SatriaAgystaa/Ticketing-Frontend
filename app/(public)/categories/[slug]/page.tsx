@@ -35,14 +35,14 @@ export default async function CategoryPage({ params }: Props) {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-      <nav className="mb-6 text-sm text-zinc-500 dark:text-zinc-400">
-        <Link href="/events" className="hover:text-zinc-700 dark:hover:text-zinc-200">Event</Link>
+      <nav className="mb-6 text-sm text-gray-500">
+        <Link href="/events" className="hover:text-gray-700">Event</Link>
         <span className="mx-2">/</span>
-        <span className="text-zinc-900 dark:text-white">{categoryName}</span>
+        <span className="text-gray-900">{categoryName}</span>
       </nav>
 
-      <h1 className="text-3xl font-bold text-zinc-900 dark:text-white">Event {categoryName}</h1>
-      <p className="mt-2 text-zinc-600 dark:text-zinc-400">
+      <h1 className="text-3xl font-bold text-gray-900">Event {categoryName}</h1>
+      <p className="mt-2 text-gray-600">
         Temukan berbagai event {categoryName} menarik di seluruh Indonesia.
       </p>
 
@@ -54,10 +54,10 @@ export default async function CategoryPage({ params }: Props) {
 
       {events.length === 0 && (
         <div className="mt-12 text-center">
-          <p className="text-zinc-500 dark:text-zinc-400">Belum ada event untuk kategori ini.</p>
+          <p className="text-gray-500">Belum ada event untuk kategori ini.</p>
           <Link
             href="/events"
-            className="mt-4 inline-block text-sm font-medium text-blue-600 hover:text-blue-500"
+            className="mt-4 inline-block text-sm font-medium text-indigo-600 hover:text-indigo-500"
           >
             Jelajahi semua event
           </Link>

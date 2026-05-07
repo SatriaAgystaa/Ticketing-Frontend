@@ -63,13 +63,13 @@ export function FileUpload({
   return (
     <div className={className}>
       {label && (
-        <span className="mb-1.5 block text-sm font-medium text-zinc-700 dark:text-zinc-300">
+        <span className="mb-1.5 block text-sm font-medium text-gray-700">
           {label}
         </span>
       )}
 
       {value ? (
-        <div className="relative overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800">
+        <div className="relative overflow-hidden rounded-lg border border-gray-200">
           <img src={value} alt="Uploaded" className="h-40 w-full object-cover" />
           <button
             onClick={() => onChange("")}
@@ -82,21 +82,21 @@ export function FileUpload({
         <div
           {...getRootProps()}
           className={cn(
-            "flex cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed border-zinc-200 px-4 py-8 text-center transition-colors hover:border-zinc-400 dark:border-zinc-800 dark:hover:border-zinc-600",
-            isDragActive && "border-blue-500 bg-blue-50 dark:bg-blue-950",
+            "flex cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed border-gray-200 px-4 py-8 text-center transition-colors hover:border-gray-400",
+            isDragActive && "border-blue-500 bg-blue-50",
             isUploading && "pointer-events-none opacity-50",
           )}
         >
           <input {...getInputProps()} />
           {isUploading ? (
-            <div className="h-8 w-8 animate-spin rounded-full border-2 border-zinc-300 border-t-zinc-900" />
+            <div className="h-8 w-8 animate-spin rounded-full border-2 border-gray-300 border-t-indigo-600" />
           ) : (
             <>
-              <Upload className="h-8 w-8 text-zinc-400" />
-              <p className="text-sm text-zinc-500 dark:text-zinc-400">
+              <Upload className="h-8 w-8 text-gray-400" />
+              <p className="text-sm text-gray-500">
                 {isDragActive ? "Drop file di sini..." : "Klik atau drag file ke sini"}
               </p>
-              <p className="text-xs text-zinc-400">Maks {maxSizeMB}MB</p>
+              <p className="text-xs text-gray-400">Maks {maxSizeMB}MB</p>
             </>
           )}
         </div>

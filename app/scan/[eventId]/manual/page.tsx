@@ -63,9 +63,9 @@ export default function ManualScanPage({
     <div className="mx-auto flex w-full max-w-md flex-col gap-4">
       {/* Info Event */}
       {staffEvent && (
-        <div className="rounded-xl bg-zinc-900 px-4 py-3 dark:bg-zinc-800">
-          <p className="font-semibold text-white">{staffEvent.event.title}</p>
-          <div className="mt-1 flex items-center gap-1 text-xs text-zinc-400">
+        <div className="rounded-xl border border-indigo-100 bg-indigo-50 px-4 py-3">
+          <p className="font-semibold text-indigo-900">{staffEvent.event.title}</p>
+          <div className="mt-1 flex items-center gap-1 text-xs text-indigo-500">
             <CalendarDays className="h-3 w-3" />
             {formatDate(staffEvent.event.starts_at)}
           </div>
@@ -74,7 +74,7 @@ export default function ManualScanPage({
 
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h1 className="text-lg font-bold text-zinc-900 dark:text-white">
+        <h1 className="text-lg font-bold text-gray-900">
           Input Manual
         </h1>
         <Link href={`/scan/${eventId}`}>
@@ -107,10 +107,10 @@ export default function ManualScanPage({
 
       {/* Idle hint */}
       {!result && !isError && !isValidating && (
-        <div className="flex flex-col items-center gap-2 rounded-xl border border-dashed border-zinc-300 py-8 text-center dark:border-zinc-700">
-          <TicketIcon className="h-8 w-8 text-zinc-400" />
-          <p className="text-sm font-medium text-zinc-500">Masukkan kode tiket di atas</p>
-          <p className="text-xs text-zinc-400">Kode tiket dimulai dengan <span className="font-mono">TKT-</span></p>
+        <div className="flex flex-col items-center gap-2 rounded-xl border border-dashed border-gray-300 py-8 text-center">
+          <TicketIcon className="h-8 w-8 text-gray-400" />
+          <p className="text-sm font-medium text-gray-500">Masukkan kode tiket di atas</p>
+          <p className="text-xs text-gray-400">Kode tiket dimulai dengan <span className="font-mono">TKT-</span></p>
         </div>
       )}
 

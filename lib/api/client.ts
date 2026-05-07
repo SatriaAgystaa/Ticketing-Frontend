@@ -114,11 +114,24 @@ class ApiClient {
       }
     }
 
-    const json = await res.json();
+    // 204 No Content or empty body — treat as success
+    if (res.status === 204 || res.headers.get("content-length") === "0") {
+      return { success: true, data: null as T } as ApiResponse<T>;
+    }
 
-    if (!res.ok || !json.success) {
+    // Safely parse JSON — some endpoints may return empty body on success
+    let json: unknown;
+    try {
+      const text = await res.text();
+      json = text ? JSON.parse(text) : { success: res.ok };
+    } catch {
+      if (res.ok) return { success: true, data: null as T } as ApiResponse<T>;
+      throw new ApiRequestError("PARSE_ERROR", "Invalid server response", res.status);
+    }
+
+    if (!res.ok || !(json as ApiResponse<T>).success) {
       const error = json as ApiError;
-      throw new ApiRequestError(error.code, error.message, res.status, error.errors);
+      throw new ApiRequestError(error.code ?? "UNKNOWN", error.message ?? "Request failed", res.status, error.errors);
     }
 
     return json as ApiResponse<T>;

@@ -138,10 +138,10 @@ export default function TicketTypesPage({
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">
+          <h1 className="text-2xl font-bold text-gray-900">
             Tipe Tiket
           </h1>
-          <p className="text-sm text-zinc-500 dark:text-zinc-400">
+          <p className="text-sm text-gray-500">
             Kelola tipe tiket untuk event ini
           </p>
         </div>
@@ -153,7 +153,7 @@ export default function TicketTypesPage({
 
       {ticketTypes.length === 0 ? (
         <Card>
-          <CardContent className="py-12 text-center text-sm text-zinc-400">
+          <CardContent className="py-12 text-center text-sm text-gray-400">
             Belum ada tipe tiket. Tambahkan tipe tiket pertama.
           </CardContent>
         </Card>
@@ -164,7 +164,7 @@ export default function TicketTypesPage({
               <CardContent className="flex items-center justify-between p-4">
                 <div>
                   <div className="flex items-center gap-2">
-                    <h3 className="font-semibold text-zinc-900 dark:text-white">
+                    <h3 className="font-semibold text-gray-900">
                       {tt.name}
                     </h3>
                     {!tt.is_visible && (
@@ -174,7 +174,7 @@ export default function TicketTypesPage({
                       <Badge variant="warning">Early Bird</Badge>
                     )}
                   </div>
-                  <p className="text-sm text-zinc-500">
+                  <p className="text-sm text-gray-500">
                     {formatCurrency(tt.price)} &middot; {tt.sold_count}/
                     {tt.quota} terjual &middot; Maks {tt.max_per_user}/user
                   </p>
@@ -250,10 +250,10 @@ export default function TicketTypesPage({
           <label className="flex items-center gap-2">
             <input
               type="checkbox"
-              className="h-4 w-4 rounded border-zinc-300"
+              className="h-4 w-4 rounded border-gray-300"
               {...register("is_visible")}
             />
-            <span className="text-sm text-zinc-700 dark:text-zinc-300">
+            <span className="text-sm text-gray-700">
               Tampilkan ke pembeli
             </span>
           </label>
@@ -261,10 +261,10 @@ export default function TicketTypesPage({
           <label className="flex items-center gap-2">
             <input
               type="checkbox"
-              className="h-4 w-4 rounded border-zinc-300"
+              className="h-4 w-4 rounded border-gray-300"
               {...register("is_early_bird")}
             />
-            <span className="text-sm text-zinc-700 dark:text-zinc-300">
+            <span className="text-sm text-gray-700">
               Early Bird
             </span>
           </label>

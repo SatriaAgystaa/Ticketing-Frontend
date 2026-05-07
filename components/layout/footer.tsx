@@ -3,84 +3,96 @@ import { Ticket } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="border-t border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
+    <footer className="border-t border-gray-200 bg-gray-50">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
-            <Link href="/" className="flex items-center gap-2 font-bold text-zinc-900 dark:text-white">
-              <Ticket className="h-5 w-5" />
+            <Link
+              href="/"
+              className="flex items-center gap-2 font-semibold text-gray-900"
+            >
+              <div className="flex h-6 w-6 items-center justify-center rounded-md bg-indigo-600">
+                <Ticket className="h-3.5 w-3.5 text-white" />
+              </div>
               Tiket Event
             </Link>
-            <p className="mt-3 text-sm text-zinc-500 dark:text-zinc-400">
+            <p className="mt-3 text-sm leading-relaxed text-gray-500">
               Platform ticketing event terpercaya di Indonesia.
             </p>
           </div>
 
           {/* Jelajahi */}
           <div>
-            <h3 className="text-sm font-semibold text-zinc-900 dark:text-white">Jelajahi</h3>
-            <ul className="mt-3 space-y-2">
-              <li>
-                <Link href="/events" className="text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white">
-                  Semua Event
-                </Link>
-              </li>
-              <li>
-                <Link href="/categories/musik-hiburan" className="text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white">
-                  Musik & Hiburan
-                </Link>
-              </li>
-              <li>
-                <Link href="/categories/seminar" className="text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white">
-                  Seminar & Workshop
-                </Link>
-              </li>
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-400">
+              Jelajahi
+            </h3>
+            <ul className="mt-4 space-y-3">
+              {[
+                { href: "/events", label: "Semua Event" },
+                { href: "/categories/musik-hiburan", label: "Musik & Hiburan" },
+                { href: "/categories/seminar", label: "Seminar & Workshop" },
+              ].map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-gray-500 transition-colors hover:text-gray-900"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Organizer */}
           <div>
-            <h3 className="text-sm font-semibold text-zinc-900 dark:text-white">Organizer</h3>
-            <ul className="mt-3 space-y-2">
-              <li>
-                <Link href="/dashboard" className="text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white">
-                  Buat Event
-                </Link>
-              </li>
-              <li>
-                <Link href="/dashboard/finance" className="text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white">
-                  Kelola Keuangan
-                </Link>
-              </li>
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-400">
+              Organizer
+            </h3>
+            <ul className="mt-4 space-y-3">
+              {[
+                { href: "/dashboard", label: "Buat Event" },
+                { href: "/dashboard/finance", label: "Kelola Keuangan" },
+              ].map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-gray-500 transition-colors hover:text-gray-900"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Bantuan */}
           <div>
-            <h3 className="text-sm font-semibold text-zinc-900 dark:text-white">Bantuan</h3>
-            <ul className="mt-3 space-y-2">
-              <li>
-                <Link href="/help" className="text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white">
-                  Pusat Bantuan
-                </Link>
-              </li>
-              <li>
-                <Link href="/terms" className="text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white">
-                  Syarat & Ketentuan
-                </Link>
-              </li>
-              <li>
-                <Link href="/privacy" className="text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white">
-                  Kebijakan Privasi
-                </Link>
-              </li>
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-400">
+              Bantuan
+            </h3>
+            <ul className="mt-4 space-y-3">
+              {[
+                { href: "/help", label: "Pusat Bantuan" },
+                { href: "/terms", label: "Syarat & Ketentuan" },
+                { href: "/privacy", label: "Kebijakan Privasi" },
+              ].map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-gray-500 transition-colors hover:text-gray-900"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
 
-        <div className="mt-8 border-t border-zinc-200 pt-8 dark:border-zinc-800">
-          <p className="text-center text-sm text-zinc-400 dark:text-zinc-500">
+        <div className="mt-10 border-t border-gray-200 pt-8">
+          <p className="text-center text-xs text-gray-400">
             &copy; {new Date().getFullYear()} Tiket Event. All rights reserved.
           </p>
         </div>

@@ -28,7 +28,7 @@ export default function OrdersPage() {
   if (isLoading) {
     return (
       <div className="mx-auto max-w-3xl px-4 py-8">
-        <h1 className="mb-6 text-2xl font-bold text-zinc-900 dark:text-white">Pesanan Saya</h1>
+        <h1 className="mb-6 text-2xl font-bold text-gray-900">Pesanan Saya</h1>
         <div className="space-y-4">
           {Array.from({ length: 3 }).map((_, i) => (
             <Skeleton key={i} className="h-28 w-full rounded-xl" />
@@ -40,7 +40,7 @@ export default function OrdersPage() {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
-      <h1 className="mb-6 text-2xl font-bold text-zinc-900 dark:text-white">Pesanan Saya</h1>
+      <h1 className="mb-6 text-2xl font-bold text-gray-900">Pesanan Saya</h1>
 
       {!orders || orders.length === 0 ? (
         <EmptyState
@@ -53,17 +53,17 @@ export default function OrdersPage() {
             <Link
               key={order.id}
               href={`/orders/${order.id}`}
-              className="block rounded-xl border border-zinc-200 p-4 transition-shadow hover:shadow-md dark:border-zinc-800"
+              className="block rounded-xl border border-gray-200 p-4 transition-shadow hover:shadow-md"
             >
               <div className="flex items-start justify-between">
                 <div>
-                  <p className="font-semibold text-zinc-900 dark:text-white">
+                  <p className="font-semibold text-gray-900">
                     {order.event.title}
                   </p>
-                  <p className="mt-0.5 text-sm text-zinc-500 dark:text-zinc-400">
+                  <p className="mt-0.5 text-sm text-gray-500">
                     {order.order_number}
                   </p>
-                  <p className="mt-1 text-xs text-zinc-400 dark:text-zinc-500">
+                  <p className="mt-1 text-xs text-gray-400">
                     {formatDate(order.created_at)}
                   </p>
                 </div>
@@ -71,12 +71,12 @@ export default function OrdersPage() {
                   <Badge variant={STATUS_VARIANT[order.status] ?? "default"}>
                     {order.status}
                   </Badge>
-                  <p className="mt-2 font-semibold text-zinc-900 dark:text-white">
+                  <p className="mt-2 font-semibold text-gray-900">
                     {formatCurrency(order.total_amount)}
                   </p>
                 </div>
               </div>
-              <div className="mt-3 text-sm text-zinc-500 dark:text-zinc-400">
+              <div className="mt-3 text-sm text-gray-500">
                 {order.items.length} item &middot;{" "}
                 {order.items.map((i) => `${i.quantity}x ${i.ticket_type_name_snapshot}`).join(", ")}
               </div>

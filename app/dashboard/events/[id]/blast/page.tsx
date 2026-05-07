@@ -44,15 +44,15 @@ export default function BlastMessagePage({
   return (
     <div className="mx-auto max-w-2xl space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">
+        <h1 className="text-2xl font-bold text-gray-900">
           Blast Message
         </h1>
-        <p className="text-sm text-zinc-500 dark:text-zinc-400">
+        <p className="text-sm text-gray-500">
           Kirim pesan email ke semua peserta event ini
         </p>
       </div>
 
-      <div className="rounded-lg border border-yellow-200 bg-yellow-50 p-4 text-sm text-yellow-700 dark:border-yellow-800 dark:bg-yellow-950 dark:text-yellow-400">
+      <div className="rounded-lg border border-yellow-200 bg-yellow-50 p-4 text-sm text-yellow-700">
         Blast message dibatasi 1x setiap {LIMITS.BLAST_COOLDOWN_MINUTES} menit.
         Pastikan isi pesan sudah benar sebelum mengirim.
       </div>

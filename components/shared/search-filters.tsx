@@ -41,13 +41,13 @@ export function SearchFilters({ categories, cities, values, onChange }: SearchFi
       {/* Search bar */}
       <div className="flex gap-2">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400" />
+          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
           <input
             type="text"
             placeholder="Cari event, konser, workshop..."
             value={values.search || ""}
             onChange={(e) => updateFilter("search", e.target.value)}
-            className="h-10 w-full rounded-lg border border-zinc-200 bg-white pl-10 pr-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-950 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-50"
+            className="h-10 w-full rounded-lg border border-gray-200 bg-white pl-10 pr-3 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
           />
         </div>
         <Button
@@ -66,7 +66,7 @@ export function SearchFilters({ categories, cities, values, onChange }: SearchFi
 
       {/* Filter row */}
       {showFilters && (
-        <div className="flex flex-wrap items-end gap-3 rounded-lg border border-zinc-200 p-3 dark:border-zinc-800">
+        <div className="flex flex-wrap items-end gap-3 rounded-lg border border-gray-200 p-3">
           <Select
             label="Kategori"
             options={categories.map((c) => ({ value: c.slug, label: c.name }))}

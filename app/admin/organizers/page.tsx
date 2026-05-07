@@ -84,10 +84,10 @@ export default function AdminOrganizersPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">
+        <h1 className="text-2xl font-bold text-gray-900">
           Verifikasi Organizer
         </h1>
-        <p className="text-sm text-zinc-500 dark:text-zinc-400">
+        <p className="text-sm text-gray-500">
           Review dan verifikasi KYC organizer
         </p>
       </div>
@@ -99,10 +99,10 @@ export default function AdminOrganizersPage() {
             header: "Organizer",
             render: (o: OrganizerProfile & { user: User }) => (
               <div>
-                <p className="font-medium text-zinc-900 dark:text-white">
+                <p className="font-medium text-gray-900">
                   {o.brand_name}
                 </p>
-                <p className="text-xs text-zinc-500">{o.user.email}</p>
+                <p className="text-xs text-gray-500">{o.user.email}</p>
               </div>
             ),
           },

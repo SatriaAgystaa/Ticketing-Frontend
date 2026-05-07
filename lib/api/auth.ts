@@ -1,4 +1,5 @@
 import type { LoginResponse, StaffEvent, User } from "@/lib/types/user";
+import { getRefreshToken } from "@/lib/auth/tokens";
 import { api } from "./client";
 
 export const authApi = {
@@ -15,7 +16,7 @@ export const authApi = {
   },
 
   logout() {
-    return api.post("/auth/logout");
+    return api.post("/auth/logout", { refresh_token: getRefreshToken() }, false);
   },
 
   verifyEmail(email: string, otp: string) {

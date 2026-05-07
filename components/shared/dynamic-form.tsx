@@ -82,15 +82,15 @@ function DynamicField({
     case "checkbox":
       return (
         <div className="space-y-1.5">
-          <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">{label}</span>
+          <span className="text-sm font-medium text-gray-700">{label}</span>
           <label className="flex items-center gap-2">
             <input
               type="checkbox"
               checked={value === "true"}
               onChange={(e) => onChange(String(e.target.checked))}
-              className="h-4 w-4 rounded border-zinc-300"
+              className="h-4 w-4 rounded border-gray-300"
             />
-            <span className="text-sm text-zinc-600 dark:text-zinc-400">{field.label}</span>
+            <span className="text-sm text-gray-600">{field.label}</span>
           </label>
           {error && <p className="text-sm text-red-500">{error}</p>}
         </div>
@@ -99,7 +99,7 @@ function DynamicField({
     case "radio":
       return (
         <div className="space-y-1.5">
-          <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">{label}</span>
+          <span className="text-sm font-medium text-gray-700">{label}</span>
           <div className="space-y-2">
             {(field.options || []).map((opt) => (
               <label key={opt} className="flex items-center gap-2">
@@ -109,9 +109,9 @@ function DynamicField({
                   value={opt}
                   checked={value === opt}
                   onChange={() => onChange(opt)}
-                  className="h-4 w-4 border-zinc-300"
+                  className="h-4 w-4 border-gray-300"
                 />
-                <span className="text-sm text-zinc-600 dark:text-zinc-400">{opt}</span>
+                <span className="text-sm text-gray-600">{opt}</span>
               </label>
             ))}
           </div>

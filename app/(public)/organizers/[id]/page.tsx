@@ -35,19 +35,19 @@ export default async function OrganizerProfilePage({ params }: Props) {
             className="h-20 w-20 shrink-0 rounded-full object-cover"
           />
         ) : (
-          <div className="h-20 w-20 shrink-0 rounded-full bg-zinc-200 dark:bg-zinc-700" />
+          <div className="h-20 w-20 shrink-0 rounded-full bg-gray-200" />
         )}
         <div>
           <div className="flex items-center justify-center gap-2 sm:justify-start">
-            <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">{organizer.brand_name}</h1>
+            <h1 className="text-2xl font-bold text-gray-900">{organizer.brand_name}</h1>
             {organizer.is_verified && (
               <OrganizerBadge brandName="" isVerified={organizer.is_verified} />
             )}
           </div>
           {organizer.description && (
-            <p className="mt-1 max-w-xl text-zinc-600 dark:text-zinc-400">{organizer.description}</p>
+            <p className="mt-1 max-w-xl text-gray-600">{organizer.description}</p>
           )}
-          <div className="mt-3 flex flex-wrap justify-center gap-4 text-sm text-zinc-500 dark:text-zinc-400 sm:justify-start">
+          <div className="mt-3 flex flex-wrap justify-center gap-4 text-sm text-gray-500 sm:justify-start">
             <span className="flex items-center gap-1.5">
               <CalendarDays className="h-4 w-4" />
               {organizer.event_count} event
@@ -62,7 +62,7 @@ export default async function OrganizerProfilePage({ params }: Props) {
 
       {/* Events */}
       <section className="mt-10">
-        <h2 className="text-xl font-bold text-zinc-900 dark:text-white">
+        <h2 className="text-xl font-bold text-gray-900">
           Event oleh {organizer.brand_name}
         </h2>
         {organizer.events && organizer.events.length > 0 ? (
@@ -72,7 +72,7 @@ export default async function OrganizerProfilePage({ params }: Props) {
             ))}
           </div>
         ) : (
-          <p className="mt-8 text-center text-zinc-500 dark:text-zinc-400">
+          <p className="mt-8 text-center text-gray-500">
             Belum ada event dari penyelenggara ini.
           </p>
         )}

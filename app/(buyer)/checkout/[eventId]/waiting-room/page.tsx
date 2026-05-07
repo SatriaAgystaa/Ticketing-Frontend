@@ -39,33 +39,33 @@ export default function WaitingRoomPage() {
 
   return (
     <div className="mx-auto max-w-lg px-4 py-12 text-center">
-      <h1 className="mb-2 text-2xl font-bold text-zinc-900 dark:text-white">
+      <h1 className="mb-2 text-2xl font-bold text-gray-900">
         Ruang Tunggu
       </h1>
-      <p className="mb-8 text-zinc-500 dark:text-zinc-400">
+      <p className="mb-8 text-gray-500">
         Event ini sedang ramai. Anda berada di antrian untuk checkout.
       </p>
 
-      <div className="rounded-xl border border-zinc-200 bg-white p-8 dark:border-zinc-800 dark:bg-zinc-950">
+      <div className="rounded-xl border border-gray-200 bg-white p-8">
         {position?.status === "waiting" && (
           <>
             <div className="mb-4">
               <Spinner />
             </div>
-            <p className="text-sm text-zinc-500 dark:text-zinc-400">Posisi antrian Anda</p>
-            <p className="mt-1 text-5xl font-bold text-zinc-900 dark:text-white">
+            <p className="text-sm text-gray-500">Posisi antrian Anda</p>
+            <p className="mt-1 text-5xl font-bold text-gray-900">
               #{position.position ?? "-"}
             </p>
             {position.estimated_wait_minutes != null && (
-              <p className="mt-3 text-sm text-zinc-500 dark:text-zinc-400">
+              <p className="mt-3 text-sm text-gray-500">
                 Estimasi waktu tunggu:{" "}
-                <span className="font-medium text-zinc-900 dark:text-white">
+                <span className="font-medium text-gray-900">
                   ~{position.estimated_wait_minutes} menit
                 </span>
               </p>
             )}
             {position.total_in_queue != null && (
-              <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+              <p className="mt-1 text-sm text-gray-500">
                 Total dalam antrian: {position.total_in_queue}
               </p>
             )}
@@ -75,7 +75,7 @@ export default function WaitingRoomPage() {
         {position?.status === "called" && (
           <>
             <p className="text-lg font-semibold text-green-600">Giliran Anda!</p>
-            <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">
+            <p className="mt-2 text-sm text-gray-500">
               Mengalihkan ke halaman checkout...
             </p>
           </>
@@ -84,7 +84,7 @@ export default function WaitingRoomPage() {
         {position?.status === "expired" && (
           <>
             <p className="text-lg font-semibold text-red-600">Sesi Expired</p>
-            <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">
+            <p className="mt-2 text-sm text-gray-500">
               Waktu tunggu Anda telah habis. Silakan bergabung kembali.
             </p>
             <Button className="mt-4" onClick={() => join()}>

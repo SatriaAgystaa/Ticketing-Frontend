@@ -23,8 +23,8 @@ export default async function EventsPage({ searchParams }: { searchParams: Searc
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-      <h1 className="text-3xl font-bold text-zinc-900 dark:text-white">Jelajahi Event</h1>
-      <p className="mt-2 text-zinc-600 dark:text-zinc-400">
+      <h1 className="text-3xl font-bold text-gray-900">Jelajahi Event</h1>
+      <p className="mt-2 text-gray-600">
         Temukan event yang sesuai dengan minat Anda.
       </p>
 
@@ -35,8 +35,8 @@ export default async function EventsPage({ searchParams }: { searchParams: Searc
             href="/events"
             className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
               !category
-                ? "border-blue-600 bg-blue-600 text-white"
-                : "border-zinc-300 text-zinc-700 hover:border-zinc-400 dark:border-zinc-700 dark:text-zinc-300"
+                ? "border-indigo-600 bg-indigo-600 text-white"
+                : "border-gray-300 text-gray-700 hover:border-gray-400"
             }`}
           >
             Semua
@@ -47,8 +47,8 @@ export default async function EventsPage({ searchParams }: { searchParams: Searc
               href={`/events?category=${cat.slug}${city ? `&city=${city}` : ""}`}
               className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
                 category === cat.slug
-                  ? "border-blue-600 bg-blue-600 text-white"
-                  : "border-zinc-300 text-zinc-700 hover:border-zinc-400 dark:border-zinc-700 dark:text-zinc-300"
+                  ? "border-indigo-600 bg-indigo-600 text-white"
+                  : "border-gray-300 text-gray-700 hover:border-gray-400"
               }`}
             >
               {cat.name}
@@ -66,10 +66,10 @@ export default async function EventsPage({ searchParams }: { searchParams: Searc
 
       {events.length === 0 && (
         <div className="mt-12 text-center">
-          <p className="text-zinc-500 dark:text-zinc-400">Tidak ada event yang ditemukan.</p>
+          <p className="text-gray-500">Tidak ada event yang ditemukan.</p>
           <Link
             href="/events"
-            className="mt-4 inline-block text-sm font-medium text-blue-600 hover:text-blue-500"
+            className="mt-4 inline-block text-sm font-medium text-indigo-600 hover:text-indigo-500"
           >
             Hapus semua filter
           </Link>

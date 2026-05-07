@@ -21,15 +21,15 @@ export default function ScanHomePage() {
   return (
     <div className="mx-auto w-full max-w-md space-y-6">
       {/* Greeting */}
-      <div className="flex items-center gap-3 rounded-xl bg-zinc-900 p-4 dark:bg-zinc-800">
-        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-green-500/10">
-          <ShieldCheck className="h-6 w-6 text-green-500" />
+      <div className="flex items-center gap-3 rounded-xl border border-indigo-100 bg-indigo-50 p-4">
+        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-indigo-100">
+          <ShieldCheck className="h-6 w-6 text-indigo-600" />
         </div>
         <div>
-          <p className="font-semibold text-white">
+          <p className="font-semibold text-indigo-900">
             Selamat datang, {user?.full_name?.split(" ")[0]}!
           </p>
-          <p className="text-sm text-zinc-400">
+          <p className="text-sm text-indigo-500">
             Kamu bertugas di {staffEvents.length} event
           </p>
         </div>
@@ -45,8 +45,8 @@ export default function ScanHomePage() {
       ) : staffEvents.length === 0 ? (
         <Card>
           <CardContent className="flex flex-col items-center gap-3 py-12 text-center">
-            <ScanLine className="h-10 w-10 text-zinc-500" />
-            <p className="text-sm text-zinc-400">
+            <ScanLine className="h-10 w-10 text-gray-500" />
+            <p className="text-sm text-gray-400">
               Kamu belum ditugaskan di event manapun
             </p>
           </CardContent>
@@ -55,7 +55,7 @@ export default function ScanHomePage() {
         <>
           {upcoming.length > 0 && (
             <div className="space-y-3">
-              <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+              <p className="text-xs font-semibold uppercase tracking-wider text-gray-500">
                 Event Aktif / Mendatang
               </p>
               {upcoming.map((s) => (
@@ -66,7 +66,7 @@ export default function ScanHomePage() {
 
           {past.length > 0 && (
             <div className="space-y-3">
-              <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+              <p className="text-xs font-semibold uppercase tracking-wider text-gray-500">
                 Event Selesai
               </p>
               {past.map((s) => (
@@ -96,24 +96,24 @@ function EventCard({
       >
         <CardContent className="flex items-center justify-between p-4">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-800">
-              <CalendarDays className="h-5 w-5 text-zinc-500" />
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-100">
+              <CalendarDays className="h-5 w-5 text-gray-500" />
             </div>
             <div>
-              <p className="font-medium text-zinc-900 dark:text-white">
+              <p className="font-medium text-gray-900">
                 {s.event.title}
               </p>
               <div className="flex items-center gap-2">
-                <p className="text-sm text-zinc-500">
+                <p className="text-sm text-gray-500">
                   {formatDate(s.event.starts_at)}
                 </p>
-                <span className="rounded bg-zinc-100 px-1.5 py-0.5 text-xs text-zinc-500 dark:bg-zinc-800">
+                <span className="rounded bg-gray-100 px-1.5 py-0.5 text-xs text-gray-500">
                   {roleLabel}
                 </span>
               </div>
             </div>
           </div>
-          <ChevronRight className="h-5 w-5 text-zinc-400" />
+          <ChevronRight className="h-5 w-5 text-gray-400" />
         </CardContent>
       </Card>
     </Link>
